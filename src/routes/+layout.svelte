@@ -11,9 +11,9 @@
       <TopAppBar variant="static" dense={true} color="primary">
         <Row>
           <Section>
-            <Button href="/balamod.github.io"><Label>Home</Label></Button>
-            <Button href="/balamod.github.io/docs"><Label>Documentation</Label></Button>
-            <Button href="/balamod.github.io/mods"><Label>Mods</Label></Button>
+            <Button href="/"><Label>Home</Label></Button>
+            <Button href="/docs"><Label>Documentation</Label></Button>
+            <Button href="/mods"><Label>Mods</Label></Button>
           </Section>
           <Section align="end">
             <Button href="https://github.com/UwUDev/balamod" target="_blank">

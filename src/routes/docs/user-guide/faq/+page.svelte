@@ -9,14 +9,14 @@
 
 <h2>How do I install balamod?</h2>
 
-<p>Head on to the <a href="/docs/user-guide/installation">installation guide</a> to learn how to install balamod.</p>
+<!-- <p>Head on to the <a href="/docs/user-guide/installation">installation guide</a> to learn how to install balamod.</p> -->
 
 <h2>In what language are mods/Balatro written in?</h2>
 
 <p>
   Balatro is written in <a href="https://www.lua.org/">Lua</a>, and so are the mods and APIs.
 
-  Balatro is built using the <a href="https://love2d.org/">LÖVE</a> framework, which is also written in Lua.
+  <!-- Balatro is built using the <a href="https://love2d.org/">LÖVE</a> framework, which is also written in Lua. -->
 </p>
 
 <h2>Where are my mods/apis stored?</h2>
@@ -24,7 +24,7 @@
 <p>
   Depending on your operating system, balamod stores mods and APIs in different locations.
 
-  You can refer to <a href="https://love2d.org/wiki/love.filesystem">this page</a> to know where LÖVE stores files on your system.
+  <!-- You can refer to <a href="https://love2d.org/wiki/love.filesystem">this page</a> to know where LÖVE stores files on your system. -->
 </p>
 <ul>
   <li>On Windows, the default location is <code>%appdata%\Balatro\mods</code>.</li>
@@ -35,7 +35,7 @@
 <h2>How do I create a mod?</h2>
 
 <p>
-  Head on to the <a href="/docs/modding-guide/getting-started">modding guide</a> to learn how to create a mod.
+  <!-- Head on to the <a href="/docs/modding-guide/getting-started">modding guide</a> to learn how to create a mod. -->
 
   In short, you need to create a new lua file in the mods folder, and insert your mod in the <code>mods</code> table.
 </p>
@@ -44,7 +44,7 @@
 
 <p>
   No worries, this is a known issue. You can fix it by installing OpenSSL using Homebrew.<br/>
-  Open a terminal, and run the following command, which installs <a href="https://brew.sh/">Homebrew</a> and OpenSSL 3.0:
+  <!-- Open a terminal, and run the following command, which installs <a href="https://brew.sh/">Homebrew</a> and OpenSSL 3.0: -->
 
 </p>
 <Code language="bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install openssl@3</Code>

@@ -13,12 +13,17 @@
   import List, { Item, Text, Separator } from '@smui/list';
 
   export let open = false;
-  export let activePageUrl = '/docs/user-guide/installation';
+  export let activePageUrl = '/docs/user-guide/faq';
   export let documentationPages = [
     {
       title: 'User Guide',
       url: '/docs/user-guide',
       indent: 0,
+    },
+    {
+      title: 'FAQ',
+      url: '/docs/user-guide/faq',
+      indent: 1,
     },
     {
       title: 'Installation',

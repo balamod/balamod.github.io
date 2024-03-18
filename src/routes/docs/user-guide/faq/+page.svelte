@@ -49,6 +49,18 @@
 </p>
 <Code language="bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install openssl@3</Code>
 
+<h2>Is this compatible with <em>&lt;insert modloader of choice&gt;</em> </h2>
+
+<p>
+  Yes and no. Balamod is a mod loader, and as such, injects a lot of code into the game to make things just work.
+  Installing other mod loaders may work, or may not, but in any case, no support will be provided for such configurations.
+
+  In theory, you should not need any other mod loader, as balamod is designed to be as flexible and lightweight as possible,
+  while providing all of the necessary tools for both modders and users.
+
+  Other mod loaders include the also popular <em>Steammodded</em> loader, which is not compatible with balamod at this time.
+</p>
+
 <script lang="ts">
   import Code from '$lib/components/Code.svelte';
 </script>

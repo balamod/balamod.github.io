@@ -1,23 +1,173 @@
+<h1>Getting Started</h1>
+
+<h2>Creating a mod</h2>
+
 <p>
+  A balamod mod is a single lua file which adds whatever you want to the game. When balamod is installed, it
+  injects itself in the love2d game hooks, so that mods can edit game function, run code before and after the game
+  renders frames and so on
+</p>
+
+<h2>Hooks provided</h2>
+
+<ul>
+  <li><a href="#on_game_load"><pre>on_game_load</pre></a></li>
+  <li><a href="#on_game_quit"><pre>on_game_quit</pre></a></li>
+  <li><a href="#on_pre_update"><pre>on_pre_update</pre></a></li>
+  <li><a href="#on_post_update"><pre>on_post_update</pre></a></li>
+  <li><a href="#on_enable"><pre>on_enable</pre></a></li>
+  <li><a href="#on_disable"><pre>on_disable</pre></a></li>
+  <li><a href="#menu"><pre>menu</pre></a></li>
+  <li><a href="#on_pre_render"><pre>on_pre_render</pre></a></li>
+  <li><a href="#on_post_render"><pre>on_post_render</pre></a></li>
+  <li><a href="#on_key_pressed"><pre>on_key_pressed</pre></a></li>
+  <li><a href="#on_key_released"><pre>on_key_released</pre></a></li>
+  <li><a href="#on_mouse_pressed"><pre>on_mouse_pressed</pre></a></li>
+  <li><a href="#on_mouse_released"><pre>on_mouse_released</pre></a></li>
+  <li><a href="#on_error"><pre>on_error</pre></a></li>
+  <li><a href="#on_mousewheel"><pre>on_mousewheel</pre></a></li>
+</ul>
+
+<h3 id="on_game_load">On game load</h3>
+
+<p>
+  This hook is called when the game is loaded. This is the first hook that is called, and is called only once.
+  This hooks gets one argument, which is the command line arguments passed into the game, as a LUA table.<br>
+  Arguments are passed in order, and are separated by spaces. Each argument will be a separate entry in the table.
+</p>
+
+<h3 id="on_game_quit">On game quit</h3>
+
+<p>
+  This hook is called when the game is quit. This is the last hook that is called, and is called only once.
+  This hooks gets no arguments.
+</p>
+
+<h3 id="on_pre_update">On pre update</h3>
+
+<p>
+  This hook is called before the game updates. This is called every frame, before the game updates.
+  This hooks gets one argument, which is the time since the last frame, in seconds.
+</p>
+
+<h3 id="on_post_update">On post update</h3>
+
+<p>
+  This hook is called after the game updates. This is called every frame, after the game updates.
+  This hooks gets one argument, which is the time since the last frame, in seconds.
+</p>
+
+<h3 id="on_enable">On enable</h3>
+
+<p>
+  This hook is called when the mod is enabled. This is called every time the mod is enabled.
+  This hooks gets no arguments.<br />
+
+  For all intents and purposes, this hook is to be used to initialize your mod's variables.
+</p>
 
 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at est nibh. Etiam fringilla ultrices arcu, suscipit molestie quam tempor ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse pretium dui at ipsum lobortis dignissim. Donec vel ligula sed ipsum vulputate faucibus vel non libero. Nulla ornare ac libero a volutpat. Cras massa lacus, sagittis eu aliquet vitae, molestie sit amet est. Morbi pretium erat augue, et aliquet lacus suscipit non. Vivamus at purus at quam molestie sodales nec id elit. Maecenas urna justo, tincidunt vitae eleifend et, feugiat porta turpis. Aliquam tristique lorem non quam interdum viverra sed vel nisi. Aenean et bibendum purus. Etiam ac varius libero, id fermentum arcu. Sed eget malesuada ligula. Sed non velit quis nulla vestibulum aliquet lobortis vitae nisi.
+<h3 id="on_disable">On disable</h3>
 
-  Aenean malesuada sollicitudin lectus. Nam eleifend, tellus nec porttitor vestibulum, libero quam gravida urna, nec convallis sem tellus vitae odio. Phasellus gravida ipsum vel tempor suscipit. Morbi pretium arcu non lectus rhoncus, vel porta odio ultrices. Fusce iaculis ullamcorper massa, eu scelerisque mi faucibus id. Pellentesque finibus efficitur leo, eget eleifend nisl interdum quis. In vestibulum nibh lorem, a commodo eros porttitor eget. Ut ac facilisis enim.
+<p>
+  This hook is called when the mod is disabled. This is called every time the mod is disabled.
+  This hooks gets no arguments.<br />
 
-  Nulla semper, justo non sodales iaculis, ex nisl egestas est, ac tincidunt felis massa vel eros. Praesent molestie orci arcu, condimentum tempus nisi blandit sit amet. Aliquam ac arcu vulputate, tempus sem vel, gravida nibh. Fusce blandit sapien est, ac mollis libero venenatis quis. Pellentesque ornare et mauris sed dapibus. Quisque congue, urna non fringilla egestas, justo odio feugiat ligula, quis tincidunt erat purus quis sapien. Donec vitae gravida est. Integer blandit venenatis purus, eu suscipit erat efficitur vitae.
+  For all intents and purposes, this hook is to be used to clean up your mod's variables.
+</p>
 
-  Sed gravida lectus dui, non dictum ligula elementum sit amet. Maecenas eu gravida leo. Quisque pellentesque egestas tortor in fermentum. Pellentesque eu nisl sed velit maximus sollicitudin. Aliquam neque turpis, dictum at metus vitae, semper tincidunt nisl. Quisque accumsan dui erat, eu elementum est fermentum cursus. Cras fermentum bibendum mi, ac ornare massa pharetra sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt risus ac nulla placerat blandit. Sed ultricies molestie nisi, eu tristique sem suscipit vel. Aliquam id molestie tellus.
 
-  Aenean bibendum consequat nulla sit amet cursus. Quisque vel sagittis leo, eget vestibulum diam. Integer vel rutrum ipsum, et fermentum dui. Phasellus congue tincidunt ipsum sit amet condimentum. Fusce dapibus metus neque, ut feugiat sem congue sit amet. Curabitur imperdiet augue turpis, non egestas lectus vestibulum vitae. Donec rhoncus a nisl quis vestibulum. Morbi eget nulla a tellus pellentesque bibendum ut ut ante.
+<h3 id="menu">Menu</h3>
 
-  Etiam bibendum nisi et eros dictum hendrerit. Aenean vitae massa vehicula, cursus lacus eget, ornare sapien. Nam laoreet, metus sit amet finibus feugiat, erat sem dapibus lectus, ac consequat diam nisi et purus. Morbi ac eros at nibh convallis interdum nec et diam. Curabitur vehicula lorem eros, at finibus nisi imperdiet vitae. Quisque vel nisl neque. Mauris quis dignissim felis.
+<p>
+  This hook should return a menu render (using the game's UI toolkit) to be displayed
+  in the mod loader menu. You can use this hook to add buttons, sliders, textboxes, and so on.
 
-  Maecenas efficitur facilisis risus nec sollicitudin. Integer pellentesque diam eget odio vehicula, non ornare sem condimentum. In hac habitasse platea dictumst. Suspendisse potenti. Donec non lacus tellus. Duis in elit metus. Sed nec fermentum sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam ultricies finibus mauris eget fermentum. Morbi pretium condimentum ex sit amet pharetra. Praesent ut eleifend ex, sit amet cursus ex. Fusce nulla dolor, molestie sed metus scelerisque, viverra posuere dui. Morbi nec auctor mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean id ipsum scelerisque, lacinia est pellentesque, elementum quam.
+  This hook gets no arguments.
 
-  Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam eu orci sed orci volutpat blandit. Vestibulum tristique nibh eu dui rhoncus hendrerit. Aenean elementum lectus lorem, in ultrices orci placerat molestie. Ut at ultricies nisi. Nullam ac feugiat urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec congue hendrerit porttitor. Morbi non est eleifend nisl pulvinar tincidunt. Aenean risus sapien, ornare in interdum commodo, rhoncus sed massa. Aenean nibh orci, luctus finibus congue et, sagittis in ipsum.
+  The menu can be (and should be) used to display configuration options for your mod.
+</p>
 
-  Quisque diam sapien, elementum commodo rhoncus sed, gravida eu urna. Nunc mattis, diam id porttitor imperdiet, arcu magna efficitur nunc, in auctor risus ex vitae risus. Aliquam maximus consectetur rutrum. Morbi nec semper lectus. Suspendisse eleifend ac erat eu sagittis. Suspendisse potenti. Nulla in tortor faucibus, posuere lorem ac, venenatis tortor. Morbi quis neque commodo, interdum velit at, imperdiet purus. Proin libero felis, tristique et erat sit amet, tincidunt vehicula nisi. Donec sit amet augue auctor arcu imperdiet congue vitae et lorem.
+<h3 id="on_pre_render">On pre render</h3>
 
-  Donec accumsan ligula nunc, id rutrum elit aliquam at. Etiam viverra purus sem. Aenean efficitur tristique dolor rhoncus mollis. Vestibulum sollicitudin sit amet neque ac aliquet. Duis rhoncus mi orci, eget feugiat lacus pellentesque sed. Proin sed quam nec mauris consequat imperdiet nec eget diam. Donec euismod felis vel volutpat convallis. Ut dui dolor, posuere vitae lectus condimentum, convallis porta felis. Integer non augue sem. Maecenas feugiat vitae erat facilisis ullamcorper. Etiam rhoncus lectus ac nulla vulputate, eu ornare diam pharetra. Integer eu feugiat elit, ut lacinia neque. Suspendisse in odio augue. Suspendisse potenti.
-  </p>
+<p>
+  This hook is called before the game renders. This is called every frame, before the game renders.
+  This hooks gets no arguments.
+
+  This is called once per frame, in the love.draw function.
+</p>
+
+<h3 id="on_post_render">On post render</h3>
+
+<p>
+  This hook is called after the game renders. This is called every frame, after the game renders.
+  This hooks gets no arguments.
+
+  This is called once per frame, in the love.draw function.
+</p>
+
+<h3 id="on_key_pressed">On key pressed</h3>
+
+<p>
+  This hook is called when a key is pressed. This is called every time a key is pressed.
+  This hooks gets one argument, which is the key that was pressed.
+
+  You can return a boolean value from this hook to prevent the game from processing the key press.
+
+  Returning true will cancel the game event handling, return false (or nil) otherwise.
+</p>
+
+
+<h3 id="on_key_released">On key released</h3>
+
+<p>
+  This hook is called when a key is released. This is called every time a key is released.
+  This hooks gets one argument, which is the key that was released.
+
+  You can return a boolean value from this hook to prevent the game from processing the key release.
+
+  Returning true will cancel the game event handling, return false (or nil) otherwise.
+</p>
+
+
+<h3 id="on_mouse_pressed">On mouse pressed</h3>
+
+<p>
+  This hook is called when a mouse button is pressed. This is called every time a mouse button is pressed.
+  This hooks gets the x, y coordinates of the mouse, the button that was pressed and the number of touches (in case of touch screens).
+
+  You can return a boolean value from this hook to prevent the game from processing the mouse button press.
+
+  Returning true will cancel the game event handling, return false (or nil) otherwise.
+</p>
+
+
+<h3 id="on_mouse_released">On mouse released</h3>
+
+<p>
+  This hook is called when a mouse button is released. This is called every time a mouse button is released.
+  This hooks gets the x, y coordinates of the mouse and the button that was released.
+
+  You can return a boolean value from this hook to prevent the game from processing the mouse button release.
+
+  Returning true will cancel the game event handling, return false (or nil) otherwise.
+</p>
+
+<h3 id="on_error">On error</h3>
+
+<p>
+  This hook is called when an error occurs. This is called every time an error occurs, before the game crashes.
+
+  This hooks gets one argument, which is the error message.
+</p>
+
+<h3 id="on_mousewheel">On mousewheel</h3>
+
+<p>
+  This hook is called when the mouse wheel is scrolled. This is called every time the mouse wheel is scrolled.
+  This hooks gets the x, y coordinates of the mouse.
+
+  You can return a boolean value from this hook to prevent the game from processing the mouse wheel scroll.
+
+  Returning true will cancel the game event handling, return false (or nil) otherwise.
+</p>

@@ -200,7 +200,7 @@
 <h3 id="assetsgetatlimodid-string-texturescaling-int---table"><a class="header" href="#assetsgetatlimodid-string-texturescaling-int---table"><code>assets.getAtli(modId: string, textureScaling: int) -&gt; table</code></a></h3>
 <p>This function gets the atli (plural of atlas) required to inject into <code>G.ASSET_ATLAS</code> and <code>G.ANIMATION_ATLAS</code></p>
 <p>Atli are loaded from images placed in the <code>mods/${modId}/assets/textures/${textureScaling}x/</code> folder. Each image in that folder will be its own atlas, with the atlas key being <code>${modId}_${fileName}</code> (without the extension)</p>
-<p>Each file should contain a single image, whether it's a joker, a tarot card, or other asset. Each asset should be named according to its center ID. Asset type is determined by the prefix of the file, here is a list of the supported prefixes:</p>
+<p>Each file should contain a single image, whether it’s a joker, a tarot card, or other asset. Each asset should be named according to its center ID. Asset type is determined by the prefix of the file, here is a list of the supported prefixes:</p>
 <ul>
 <li>b: Card back (deck)</li>
 <li>v: Voucher</li>

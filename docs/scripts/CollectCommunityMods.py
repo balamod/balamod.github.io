@@ -1,4 +1,4 @@
-import requests
+from urllib.request import Request, urlopen
 import json
 
 USER="UwUDev"
@@ -24,12 +24,17 @@ config_obj={
     "mods": []
 }
 
+def request(url):
+    req = Request(url, headers=headers)
+    response = urlopen(req)
+    return response.read().decode()
+
 def get_balamod_version():
     global config_obj
-    res = requests.get(github_repo_api)
-    if res.status_code != 200:
+    res = request(github_repo_api)
+    if not res:
         raise Exception("Error: Failed to get latest release")
-    res = res.json()
+    res = json.loads(res)
     config_obj["balamod"]["latest_tag"] = res["tag_name"]
     config_obj["balamod"]["latest_url"] = res["html_url"]
     config_obj["balamod"]["published_at"] = res["published_at"]
@@ -48,7 +53,7 @@ def get_balamod_version():
     print("Successfully collected balamod version")
 
 
-def parse_mod(mod: str):
+def parse_mod(mod):
     """
     dev_console|0.5.1|Dev Console|An in-game developer console|https://github.com/balamod/mods/tree/main/dev_console|{}
     """
@@ -63,11 +68,11 @@ def parse_mod(mod: str):
 
 def collect(url, section):
     global config_obj
-    repos = requests.get(url).text
+    repos = request(url)
     for repo in repos.split("\n"):
         if not repo:  # Skip if repo is empty
             continue
-        mods = requests.get(repo).text
+        mods = request(repo)
         for mod in mods.split("\n"):
             if not mod:
                 continue

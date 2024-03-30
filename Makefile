@@ -8,3 +8,4 @@ context:
 
 build: context
 	@cd docs && mdbook build
+

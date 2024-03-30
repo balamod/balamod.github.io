@@ -1,11 +1,14 @@
 [book]
-authors = ["magicWenli"]
+authors = ["magicWenli", "UwUDev", "sbordeyne"]
 language = "en"
 multilingual = false
 src = "src"
 title = "Balamod Documentation"
 
 [preprocessor]
+
+[preprocessor.external-links]
+[preprocessor.emojicodes]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"

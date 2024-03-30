@@ -23,4 +23,3 @@ The format is as follows:
 ```
 mod_id|version|name|description|url
 ```
-

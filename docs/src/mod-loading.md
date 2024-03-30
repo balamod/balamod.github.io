@@ -15,3 +15,4 @@ If user downloads a mod from the in-game mod gallary, the mod will be automatica
 ## Manual Mod Loading
 
 If user downloads a mod from the internet, the mod file should be placed in the `mods` folder. The mod will be loaded by balamod when the game is started.
+

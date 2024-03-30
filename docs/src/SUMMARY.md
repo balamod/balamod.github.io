@@ -12,10 +12,20 @@
 # Developer Guide
 
 - [Modding Basics](./modding-basics.md)
-- [UI Modding Basics]()
-    - [UI Modding Example]()
+- [UI Modding Basics](./ui-modding-basics.md)
+    - [UI Modding Example](./ui-modding-example.md)
 - [Contributing Guide](./contributing.md)
-- [API Reference]()
+- [Mod Format](./mod-format.md)
+- [APIs]()
+  - [`logging`](./apis/logging.md)
+  - [`platform`](./apis/platform.md)
+  - [`console`](./apis/console.md)
+  - [`assets`](./apis/assets.md)
+  - [`patches`](./apis/patches.md)
+  - [`utils`](./apis/utils.md)
+  - [`tar`](./apis/tar.md)
+  - [`https`](./apis/https.md)
+
 
 # Other Resources
 

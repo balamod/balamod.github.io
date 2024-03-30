@@ -1,10 +1,10 @@
 # Installation
 
-If you are new to Balamod, this guide will help you install Balamod mod-loader on your game copy. 
+If you are new to Balamod, this guide will help you install Balamod mod-loader on your game copy.
 
 After the injection, You are able to browse the mods contributed by the community in the in-game Mod Menu.
 
-![Balamod Mod Gallary](images/Balamod_mods_gallary.png)
+![Balamod Mod Gallary](images/Balamod_mods_gallery.png)
 
 ## Download Balamod Binary
 
@@ -98,6 +98,3 @@ To update Balamod, you need to restore the `balatro` to its original state and t
 Please refer to the [Uninstall](getting-started.md#uninstall) guide to restore the game to its original state.
 
 After that, you can install the new version of Balamod.
-
-
-

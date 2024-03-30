@@ -4,13 +4,11 @@ on:
   schedule:
     - cron: '0 6 * * *'
   push:
-    paths:
-      - 'docs/**'
-      - '.github/workflows/doc.yaml'
-  workflow_run:
-    workflows: ["Release Workflow"]
-    types:
-      - completed
+    branches:
+      - main
+      - dev-mdbook
+  repository_dispatch:
+    types: [deploy-doc]
 
 jobs:
   deploy:
@@ -26,26 +24,20 @@ jobs:
           mdbook-version: 'latest'
 
       - name: Setup mdbook-admonish
-        uses: taiki-e/cache-cargo-install-action@v1
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
-          tool: mdbook-admonish
+          repo: tommilligan/mdbook-admonish
+          tag: v1.15.0
+          cache: enable
 
       - name: Setup mdbook-toc
-        uses: taiki-e/cache-cargo-install-action@v1
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
-          tool: mdbook-toc
+          repo: badboy/mdbook-toc
+          tag: 0.14.2
+          cache: enable
 
-      - name: Setup mdbook-toc
-        uses: taiki-e/cache-cargo-install-action@v1
-        with:
-          tool: mdbook-emojicodes
-
-      - name: Setup mdbook-toc
-        uses: taiki-e/cache-cargo-install-action@v1
-        with:
-          tool: mdbook-external-links
-
-      - name: Install mdbook-tera
+      - name: Setup mdbook-tera
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: avitex/mdbook-tera
@@ -54,13 +46,12 @@ jobs:
 
       - name: mdBook build
         run: |
-          python scripts/CollectCommunityMods.py
-          mdbook build
-        working-directory: ./docs
+          make build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/doc'}}
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev-mdbook'}}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/book
+

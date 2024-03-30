@@ -76,7 +76,7 @@ Send a debug message to the console. Need `dev_console` mod to be enabled.
 
 ### `inject(path, function_name, to_replace, replacement)`
 
-Inject a function to another function.
+Inject a function to another function. 
 
 - `path` is the path to the function
 - `function_name` is the name of the function

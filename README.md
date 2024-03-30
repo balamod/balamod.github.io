@@ -1,21 +1,33 @@
-# Balamod
+# Balamod Documentation
 
-Balamod is a modloader, decompiler, and code injector for a popular poker game, Balatro. Crafted with Rust, it embodies speed, safety, and simplicity.
+Welcome to the official documentation for Balamod, a mod-loader, decompiler, and code injector for the popular poker game, Balatro.
 
-Here's what Balamod brings to the table:
+[Documentation Site](https://balamod.github.io)
 
-- **Mod Loading**: Load your favorite mods into Balatro with ease.
-- **Decompiling**: Break down the game code for analysis and understanding.
-- **Code Injection**: Modify the game on the fly, introducing new elements and features.
-- **Rust-Powered**: Enjoy the speed, safety, and simplicity of a tool built with Rust.
-- **Customizable**: Tailor Balamod to your needs with its flexible design.
-- **In-Game Mod Shop**: Balamod supports downloading and displaying mods within the game, providing a seamless modding experience.
+## Building the Documentation
 
-Please refer to the [Balamod Documentation](https://UwUDev.github.io/balamod) for more information.
+To build the documentation, you need to have [mdBook](https://rust-lang.github.io/mdBook/index.html), [mdbook-toc](https://github.com/badboy/mdbook-toc/), [mdbook-tera](https://github.com/avitex/mdbook-tera/) and [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish/) installed on your system. 
 
-## Related Links
+You can easily install the `mdbook` and `mdbook-admonish` with Cargo:
 
-- [Balamod Repository](https://github.com/UwUDev/balamod): The official repository for Balamod.
-- [Balamod Organization](https://github.com/balamod): The organization hosting Balamod and related projects.
+```bash
+cargo install mdbook mdbook-admonish mdbook-toc mdbook-tera
+```
 
-[![Balamod Discord](https://discordapp.com/api/guilds/1185706070656688128/widget.png?style=banner2)](https://discord.gg/p7DeW7pSzA)
+Once you have it installed, you can run the following command to build the documentation:
+
+```bash
+make build
+```
+
+The documentation will be generated in the `book` directory.
+
+Or you can run the following command to serve the documentation locally:
+
+```bash
+make serve
+```
+
+## Contributing
+
+If you want to contribute to the documentation, you can find the source files in the `src` directory. Feel free to make changes and submit a pull request.

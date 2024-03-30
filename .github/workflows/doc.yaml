@@ -46,12 +46,12 @@ jobs:
       #     repo: jonahgoldwastaken/mdbook-external-links
       #     cache: enable
 
-      - name: Setup mdbook-emojicodes
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with:
-          repo: blyxyas/mdbook-emojicodes
-          tag: v0.3.0
-          cache: enable
+      # - name: Setup mdbook-emojicodes
+      #   uses: jaxxstorm/action-install-gh-release@v1.10.0
+      #   with:
+      #     repo: blyxyas/mdbook-emojicodes
+      #     tag: v0.3.0
+      #     cache: enable
 
       - name: Setup mdbook-tera
         uses: jaxxstorm/action-install-gh-release@v1.10.0

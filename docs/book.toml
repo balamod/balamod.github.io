@@ -22,6 +22,6 @@ command = "mdbook-tera --json context.json"
 
 [output.html]
 additional-css = ["./assets/css/mdbook-admonish.css"]
-git-repository-url = "https://github.com/UwUDev/balamod"
+git-repository-url = "github.com/balamod/balamod.github.io"
 git-repository-icon = "fa-github"
-edit-url-template = "https://github.com/UwUDev/balamod/edit/master/docs/{path}"
+edit-url-template = "https://github.com/balamod/balamod.github.io/edit/main/docs/{path}"

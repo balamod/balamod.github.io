@@ -10,6 +10,9 @@ on:
   repository_dispatch:
     types: [deploy-doc]
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -37,6 +40,19 @@ jobs:
           tag: 0.14.2
           cache: enable
 
+      - name: Setup mdbook-external-links
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: jonahgoldwastaken/mdbook-external-links
+          cache: enable
+
+      - name: Setup mdbook-emojicodes
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: blyxyas/mdbook-emojicodes
+          tag: v0.3.0
+          cache: enable
+
       - name: Setup mdbook-tera
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
@@ -50,8 +66,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev-mdbook'}}
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/book
-

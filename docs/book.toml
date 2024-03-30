@@ -8,6 +8,8 @@ title = "Balamod Documentation"
 [preprocessor]
 
 [preprocessor.external-links]
+after = [ "links" ]
+
 [preprocessor.emojicodes]
 
 [preprocessor.admonish]
@@ -25,6 +27,6 @@ command = "mdbook-tera --json context.json"
 
 [output.html]
 additional-css = ["./assets/css/mdbook-admonish.css"]
-git-repository-url = "github.com/balamod/balamod.github.io"
+git-repository-url = "https://github.com/balamod/balamod.github.io"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/balamod/balamod.github.io/edit/main/docs/{path}"

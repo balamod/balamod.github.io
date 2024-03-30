@@ -4,13 +4,11 @@ on:
   schedule:
     - cron: '0 6 * * *'
   push:
-    paths:
-      - 'docs/**'
-      - '.github/workflows/doc.yaml'
-  workflow_run:
-    workflows: ["Release Workflow"]
-    types:
-      - completed
+    branches:
+      - main
+      - dev-mdbook
+  repository_dispatch:
+    types: [deploy-doc]
 
 jobs:
   deploy:
@@ -52,7 +50,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/doc'}}
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev-mdbook'}}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/book

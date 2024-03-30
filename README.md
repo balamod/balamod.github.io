@@ -4,7 +4,7 @@ Welcome to the official documentation for Balamod, a mod-loader, decompiler, and
 
 ## Building the Documentation
 
-To build the documentation, you need to have [mdBook](https://rust-lang.github.io/mdBook/index.html) and [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish/) installed on your system. 
+To build the documentation, you need to have [mdBook](https://rust-lang.github.io/mdBook/index.html), [mdbook-toc](https://github.com/badboy/mdbook-toc/), [mdbook-tera](https://github.com/avitex/mdbook-tera/) and [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish/) installed on your system. 
 
 You can easily install the `mdbook` and `mdbook-admonish` with Cargo:
 
@@ -15,7 +15,7 @@ cargo install mdbook mdbook-admonish mdbook-toc mdbook-tera
 Once you have it installed, you can run the following command to build the documentation:
 
 ```bash
-mdbook build
+make build
 ```
 
 The documentation will be generated in the `book` directory.
@@ -23,7 +23,7 @@ The documentation will be generated in the `book` directory.
 Or you can run the following command to serve the documentation locally:
 
 ```bash
-mdbook serve
+make serve
 ```
 
 ## Contributing

@@ -26,6 +26,15 @@ jobs:
         with:
           mdbook-version: 'latest'
 
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install python dependencies
+        run: pip install -r requirements.txt
+
       - name: Setup mdbook-admonish
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:

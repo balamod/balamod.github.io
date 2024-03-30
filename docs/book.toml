@@ -7,8 +7,10 @@ title = "Balamod Documentation"
 
 [preprocessor]
 
-[preprocessor.external-links]
 [preprocessor.emojicodes]
+[preprocessor.classy]
+[preprocessor.external-links]
+after = [ "links" ]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"

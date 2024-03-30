@@ -1,12 +1,14 @@
-from urllib.request import Request, urlopen
 import json
+import requests
+
+session = requests.session()
+session.headers.update({"User-Agent": "Balamod client"})
 
 USER="UwUDev"
 REPO="balamod"
 github_repo_api = f"https://api.github.com/repos/{USER}/{REPO}/releases/latest"
 mods_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/repos.index"
 apis_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/apis.index"
-headers = {"User-Agent": "Balamod client"}
 
 config_path = "context.json"
 config_obj={
@@ -24,17 +26,11 @@ config_obj={
     "mods": []
 }
 
-def request(url):
-    req = Request(url, headers=headers)
-    response = urlopen(req)
-    return response.read().decode()
-
 def get_balamod_version():
     global config_obj
-    res = request(github_repo_api)
-    if not res:
-        raise Exception("Error: Failed to get latest release")
-    res = json.loads(res)
+    res = session.get(github_repo_api)
+    res.raise_for_status()
+    res = res.json()
     config_obj["balamod"]["latest_tag"] = res["tag_name"]
     config_obj["balamod"]["latest_url"] = res["html_url"]
     config_obj["balamod"]["published_at"] = res["published_at"]
@@ -68,11 +64,11 @@ def parse_mod(mod):
 
 def collect(url, section):
     global config_obj
-    repos = request(url)
+    repos = session.get(url).text
     for repo in repos.split("\n"):
         if not repo:  # Skip if repo is empty
             continue
-        mods = request(repo)
+        mods = session.get(repo).text
         for mod in mods.split("\n"):
             if not mod:
                 continue

@@ -659,12 +659,83 @@ return {
 <h2 id="functions"><a class="header" href="#functions">FUNCTIONS</a></h2>
 <h3 id="getloggername-string---logger"><a class="header" href="#getloggername-string---logger"><code>getLogger(name: string) -&gt; Logger</code></a></h3>
 <p>Gets a logger, and creates one if name does not exist in the <code>LOGGERS</code> table</p>
+<details id="admonition-lua-getlogger" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua getLogger</p>
+<p><a class="admonition-anchor-link" href="apis/logging.html#admonition-lua-getlogger"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function getLogger(name, level)
+if LOGGERS[name] then
+    return LOGGERS[name]
+else
+    local logger = createLogger(name, level)
+    LOGGERS[name] = logger
+    return logger
+end
+end
+</code></pre>
+</div>
+</details>
 <h3 id="savelogs---nil"><a class="header" href="#savelogs---nil"><code>saveLogs() -&gt; nil</code></a></h3>
 <p>Serializes all logs to the disk.</p>
+<details id="admonition-lua-savelogs" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua saveLogs</p>
+<p><a class="admonition-anchor-link" href="apis/logging.html#admonition-lua-savelogs"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">function saveLogs()
+local filename = "logs/"..generateDateTime()..".log"
+love.filesystem.write(filename, "")
+for _, message in ipairs(getAllMessages()) do
+    love.filesystem.append(filename, message:formatted(true).."\n")
+end
+end
+</code></pre>
+</div>
+</details>
 <h3 id="getallmessages---message"><a class="header" href="#getallmessages---message"><code>getAllMessages() -&gt; Message[]</code></a></h3>
 <p>Returns all logged messages, in order from oldest to newest.</p>
+<details id="admonition-lua-getallmessages" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua getAllMessages</p>
+<p><a class="admonition-anchor-link" href="apis/logging.html#admonition-lua-getallmessages"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function getAllMessages()
+local messages = {
+}
+for name, logger in pairs(LOGGERS) do
+    for i, message in ipairs(logger.messages) do
+        table.insert(messages, message)
+    end
+end
+table.sort(messages, function(a, b)
+    return a.time &lt; b.time
+end)
+return messages
+end
+</code></pre>
+</div>
+</details>
 <h3 id="clearlogs---nil"><a class="header" href="#clearlogs---nil"><code>clearLogs() -&gt; nil</code></a></h3>
 <p>Deletes all log messages.</p>
+<details id="admonition-lua-clearlogs" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua clearLogs</p>
+<p><a class="admonition-anchor-link" href="apis/logging.html#admonition-lua-clearlogs"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function clearLogs()
+for name, logger in pairs(LOGGERS) do
+    logger.messages = {
+    }
+end
+end
+</code></pre>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="platform"><a class="header" href="#platform">platform</a></h1>
 <h2 id="globals-1"><a class="header" href="#globals-1">GLOBALS</a></h2>
 <h2 id="variables"><a class="header" href="#variables">VARIABLES</a></h2>
@@ -689,11 +760,25 @@ return {
 </li>
 </ul>
 <h2 id="globals-2"><a class="header" href="#globals-2">GLOBALS</a></h2>
-<pre><code class="language-adminish info">This module does not expose any global variables
-</code></pre>
+<div id="admonition-info" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="apis/assets.html#admonition-info"></a></p>
+</div>
+<div>
+<p>This module does not expose any global variables</p>
+</div>
+</div>
 <h2 id="classes-1"><a class="header" href="#classes-1">CLASSES</a></h2>
-<pre><code class="language-adminish info">This module does not expose any classes
-</code></pre>
+<div id="admonition-info-1" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="apis/assets.html#admonition-info-1"></a></p>
+</div>
+<div>
+<p>This module does not expose any classes</p>
+</div>
+</div>
 <h2 id="functions-1"><a class="header" href="#functions-1">FUNCTIONS</a></h2>
 <h3 id="assetsgetatlimodid-string-texturescaling-int---table"><a class="header" href="#assetsgetatlimodid-string-texturescaling-int---table"><code>assets.getAtli(modId: string, textureScaling: int) -&gt; table</code></a></h3>
 <p>This function gets the atli (plural of atlas) required to inject into <code>G.ASSET_ATLAS</code> and <code>G.ANIMATION_ATLAS</code></p>
@@ -722,6 +807,16 @@ return {
 <h2 id="functions-2"><a class="header" href="#functions-2">FUNCTIONS</a></h2>
 <h3 id="containst-table-element-any---boolean"><a class="header" href="#containst-table-element-any---boolean"><code>contains(t: table, element: any) -&gt; boolean</code></a></h3>
 <p>Returns true if <code>t</code> contains <code>element</code>, based on the <code>==</code> operator</p>
+<details id="admonition-lua-contains" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua contains</p>
+<p><a class="admonition-anchor-link" href="apis/utils.html#admonition-lua-contains"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">
+</code></pre>
+</div>
+</details>
 <h3 id="filtert-table-predicate-functione-any---boolean---table"><a class="header" href="#filtert-table-predicate-functione-any---boolean---table"><code>filter(t: table, predicate: function(e: any) -&gt; boolean) -&gt; table</code></a></h3>
 <p>Filters table <code>t</code> based on whether <code>predicate(element)</code> is true for each element of <code>t</code></p>
 <h3 id="mapt-table-mapper-functionelement-any---any---table"><a class="header" href="#mapt-table-mapper-functionelement-any---any---table"><code>map(t: table, mapper: function(element: any) -&gt; any) -&gt; table</code></a></h3>

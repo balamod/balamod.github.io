@@ -282,12 +282,83 @@
 <h2 id="functions"><a class="header" href="#functions">FUNCTIONS</a></h2>
 <h3 id="getloggername-string---logger"><a class="header" href="#getloggername-string---logger"><code>getLogger(name: string) -&gt; Logger</code></a></h3>
 <p>Gets a logger, and creates one if name does not exist in the <code>LOGGERS</code> table</p>
+<details id="admonition-lua-getlogger" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua getLogger</p>
+<p><a class="admonition-anchor-link" href="#admonition-lua-getlogger"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function getLogger(name, level)
+if LOGGERS[name] then
+    return LOGGERS[name]
+else
+    local logger = createLogger(name, level)
+    LOGGERS[name] = logger
+    return logger
+end
+end
+</code></pre>
+</div>
+</details>
 <h3 id="savelogs---nil"><a class="header" href="#savelogs---nil"><code>saveLogs() -&gt; nil</code></a></h3>
 <p>Serializes all logs to the disk.</p>
+<details id="admonition-lua-savelogs" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua saveLogs</p>
+<p><a class="admonition-anchor-link" href="#admonition-lua-savelogs"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">function saveLogs()
+local filename = "logs/"..generateDateTime()..".log"
+love.filesystem.write(filename, "")
+for _, message in ipairs(getAllMessages()) do
+    love.filesystem.append(filename, message:formatted(true).."\n")
+end
+end
+</code></pre>
+</div>
+</details>
 <h3 id="getallmessages---message"><a class="header" href="#getallmessages---message"><code>getAllMessages() -&gt; Message[]</code></a></h3>
 <p>Returns all logged messages, in order from oldest to newest.</p>
+<details id="admonition-lua-getallmessages" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua getAllMessages</p>
+<p><a class="admonition-anchor-link" href="#admonition-lua-getallmessages"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function getAllMessages()
+local messages = {
+}
+for name, logger in pairs(LOGGERS) do
+    for i, message in ipairs(logger.messages) do
+        table.insert(messages, message)
+    end
+end
+table.sort(messages, function(a, b)
+    return a.time &lt; b.time
+end)
+return messages
+end
+</code></pre>
+</div>
+</details>
 <h3 id="clearlogs---nil"><a class="header" href="#clearlogs---nil"><code>clearLogs() -&gt; nil</code></a></h3>
 <p>Deletes all log messages.</p>
+<details id="admonition-lua-clearlogs" class="admonition admonish-example">
+<summary class="admonition-title">
+<p>Lua clearLogs</p>
+<p><a class="admonition-anchor-link" href="#admonition-lua-clearlogs"></a></p>
+</summary>
+<div>
+<pre><code class="language-lua">local function clearLogs()
+for name, logger in pairs(LOGGERS) do
+    logger.messages = {
+    }
+end
+end
+</code></pre>
+</div>
+</details>
 
                     </main>
 

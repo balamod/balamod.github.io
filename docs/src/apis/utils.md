@@ -12,6 +12,8 @@
 
 Returns true if `t` contains `element`, based on the `==` operator
 
+<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/utils.lua#contains -->
+
 ### `filter(t: table, predicate: function(e: any) -> boolean) -> table`
 
 Filters table `t` based on whether `predicate(element)` is true for each element of `t`

@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+
+"""
+Preprocesses the syntax
+<!-- lua: <url>#<function_name> -->
+to
+
+~~~admonish example title="Lua {function_name}" collapsible=true
+```lua
+<code>
+```
+~~~
+"""
+
+import json
+import sys
+from typing import Literal, Optional, TypedDict, TypeAlias
+import requests
+from luaparser import ast
+from luaparser import astnodes
+from textwrap import dedent
+import re
+
+
+def debug(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
+
+session = requests.session()
+session.headers.update({"User-Agent": "mdbook-balamod"})
+
+class BookConfig(TypedDict):
+    title: str | None
+    authors: list[str]
+    description: str | None
+    src: str
+    multilingual: bool
+    language: str | None
+    text_direction: Literal["LeftToRight"] | Literal["RightToLeft"] | None
+
+
+class BuildConfig(TypedDict):
+    build_dir: str
+    create_missing: bool
+    use_default_preprocessors: bool
+    extra_watch_dirs: list[str]
+
+
+class RustConfig(TypedDict):
+    edition: Literal["E2015"] | Literal["E2018"] | Literal["E2021"] | None
+
+
+class Config(TypedDict):
+    book: BookConfig
+    build: BuildConfig
+    rust: RustConfig
+
+
+class PreprocessorContext(TypedDict):
+    root: str
+    config: Config
+    renderer: str
+    mdbook_version: str
+
+
+class BookItem(TypedDict):
+    PartTitle: str | None
+    Separator: None
+    Chapter: Optional["Chapter"]
+
+
+class Chapter(TypedDict):
+    name: str
+    content: str
+    number: list[int] | None
+    sub_items: list[BookItem] | None
+    path: str | None
+    source_path: str | None
+    parent_names: list[str]
+
+class Book(TypedDict):
+    sections: list[BookItem]
+
+
+def replace_content(content: str) -> str:
+    """Replaces the content by a new string that contains the admonition"""
+    TEMPLATE = dedent("""
+        ~~~admonish example title="Lua {function_name}" collapsible=true
+        ```lua
+        {code}
+        ```
+        ~~~
+    """)
+    paths = []
+    for line in content.split("\n"):
+        paths.extend(re.findall(r"<!-- lua: (.+?)#(.+?) -->", line))
+
+    urls = {url for url, _ in paths}
+    files = {url: ast.parse(session.get(url).text) for url in urls}
+
+    for url, function_name in paths:
+        tree = files[url]
+        code = ""
+        for node in ast.walk(tree):
+            if isinstance(node, (astnodes.Function, astnodes.LocalFunction)):
+                if not hasattr(node.name, "id"):
+                    continue
+                if node.name.id == function_name:
+                    code = ast.to_lua_source(node, indent=4)
+                    break
+
+        content = content.replace(f"<!-- lua: {url}#{function_name} -->", TEMPLATE.format(function_name=function_name, code=code))
+    return content
+
+def process_section(section: BookItem) -> BookItem:
+    """Processes a section of the book"""
+    if section.get("Chapter") is None:
+        # No chapter to update, we don't care about this section
+        return section
+    if section["Chapter"].get('sub_items'):
+        section["Chapter"]["sub_items"] = [process_section(sub_item) for sub_item in section["Chapter"]["sub_items"]]
+        return section
+    content = section["Chapter"].get("content")
+    if content is None:
+        # No content to update, we don't care about this section
+        return section
+    if not isinstance(content, str):
+        # The content is not a string, we can't process it
+        return section
+    if not "<!-- lua: " in content:
+        # The content does not contain the pattern we are looking for
+        return section
+    debug(f"Processing section {section['Chapter']['name']}")
+    section["Chapter"]["content"] = replace_content(content)
+    return section
+
+
+def preprocess_book(context: PreprocessorContext, book: Book) -> Book:
+    # we iterate over the sections of the book
+    book["sections"] = [process_section(section) for section in book["sections"]]
+    return book
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1: # we check if we received any argument
+        if sys.argv[1] == "supports":
+            # then we are good to return an exit status code of 0, since the other argument will just be the renderer's name
+            sys.exit(0)
+    # load both the context and the book representations from stdin
+    context, book = json.load(sys.stdin)
+    # and now, we can just modify the content of the first chapter
+    # we are done with the book's modification, we can just print it to stdout,
+    # and mdbook will take care of the rest
+    book = preprocess_book(context, book)
+    json.dump(book, sys.stdout)

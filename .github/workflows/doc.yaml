@@ -40,11 +40,11 @@ jobs:
           tag: 0.14.2
           cache: enable
 
-      - name: Setup mdbook-external-links
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
-        with:
-          repo: jonahgoldwastaken/mdbook-external-links
-          cache: enable
+      # - name: Setup mdbook-external-links
+      #   uses: jaxxstorm/action-install-gh-release@v1.10.0
+      #   with:
+      #     repo: jonahgoldwastaken/mdbook-external-links
+      #     cache: enable
 
       - name: Setup mdbook-emojicodes
         uses: jaxxstorm/action-install-gh-release@v1.10.0

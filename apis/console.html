@@ -181,6 +181,189 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="console"><a class="header" href="#console">console</a></h1>
+<ul>
+<li><a href="#globals">GLOBALS</a></li>
+<li><a href="#variables">VARIABLES</a>
+<ul>
+<li><a href="#logger-logger"><code>logger: Logger</code></a></li>
+<li><a href="#log_level-loglevel"><code>log_level: LogLevel</code></a></li>
+<li><a href="#is_open-boolean"><code>is_open: boolean</code></a></li>
+<li><a href="#cmd-string"><code>cmd: string</code></a></li>
+<li><a href="#line_height-int"><code>line_height: int</code></a></li>
+<li><a href="#max_lines-int"><code>max_lines: int</code></a></li>
+<li><a href="#start_line_offset-int"><code>start_line_offset: int</code></a></li>
+<li><a href="#history_index-int"><code>history_index: int</code></a></li>
+<li><a href="#command_history-arraystring"><code>command_history: Array&lt;string&gt;</code></a></li>
+<li><a href="#history_path-string"><code>history_path: string</code></a></li>
+<li><a href="#modifiers-mapstring-boolean"><code>modifiers: Map&lt;string, boolean&gt;</code></a></li>
+<li><a href="#commands-mapstring-command"><code>commands: Map&lt;string, Command&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#functions">FUNCTIONS</a>
+<ul>
+<li><a href="#toggleself---nil"><code>toggle(self) -&gt; nil</code></a></li>
+<li><a href="#longestcommonprefixself-strings-arraystring---string"><code>longestCommonPrefix(self, strings: Array&lt;string&gt;) -&gt; string</code></a></li>
+<li><a href="#tryautocompleteself---string"><code>tryAutocomplete(self) -&gt; string</code></a></li>
+<li><a href="#getmessagecolorself-message-message---tuplefloat-float-float"><code>getMessageColor(self, message: Message) -&gt; Tuple&lt;float, float, float&gt;</code></a></li>
+<li><a href="#getfilteredmessagesself---arraymessage"><code>getFilteredMessages(self) -&gt; Array&lt;Message&gt;</code></a></li>
+<li><a href="#getmessagestodisplayself---arraymessage"><code>getMessagesToDisplay(self) -&gt; Array&lt;Message&gt;</code></a></li>
+<li><a href="#modifierslistenerself---nil"><code>modifiersListener(self) -&gt; nil</code></a></li>
+<li><a href="#typekeyself-key_name-string---nil"><code>typeKey(self, key_name: string) -&gt; nil</code></a></li>
+<li><a href="#addtohistoryself-command-string---nil"><code>addToHistory(self, command: string) -&gt; nil</code></a></li>
+<li><a href="#registercommandself-name-string-callback-functionargs-arraystring-boolean-short_description-string-autocomplete-functioncurrent_arg-string-previous_args-arraystring-arraystring-usage-string-nil"><code>registerCommand(self, name: string, callback: function(args: Array&lt;string&gt;)-&gt;boolean, short_description: string, autocomplete: function(current_arg: string, previous_args: Array&lt;string&gt;)-&gt;Array&lt;string&gt;, usage: string)-&gt;nil</code></a></li>
+<li><a href="#removecommandself-cmd_name-string---nil"><code>removeCommand(self, cmd_name: string) -&gt; nil</code></a></li>
+<li><a href="#wraptextself-message-string-screenwidth-int---arraystring"><code>wrapText(self, message: string, screenWidth: int) -&gt; Array&lt;string&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#classes">CLASSES</a>
+<ul>
+<li><a href="#command"><code>Command</code></a>
+<ul>
+<li><a href="#attributes">ATTRIBUTES</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="globals"><a class="header" href="#globals">GLOBALS</a></h2>
+<div id="admonition-info" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="#admonition-info"></a></p>
+</div>
+<div>
+<p>This module does not expose any global variables</p>
+</div>
+</div>
+<h2 id="variables"><a class="header" href="#variables">VARIABLES</a></h2>
+<h3 id="logger-logger"><a class="header" href="#logger-logger"><code>logger: Logger</code></a></h3>
+<p>Instance of a <code>logging.Logger</code> object, dedicated to the console</p>
+<h3 id="log_level-loglevel"><a class="header" href="#log_level-loglevel"><code>log_level: LogLevel</code></a></h3>
+<p>The minimum log level for which the console will log messages.</p>
+<p>Defaults to <code>"INFO"</code></p>
+<h3 id="is_open-boolean"><a class="header" href="#is_open-boolean"><code>is_open: boolean</code></a></h3>
+<p>Whether the console is currently open</p>
+<h3 id="cmd-string"><a class="header" href="#cmd-string"><code>cmd: string</code></a></h3>
+<p>String representation of the command promt. Always starts with the characters “<code>&gt; </code>”</p>
+<h3 id="line_height-int"><a class="header" href="#line_height-int"><code>line_height: int</code></a></h3>
+<p>Height of a line in pixels</p>
+<h3 id="max_lines-int"><a class="header" href="#max_lines-int"><code>max_lines: int</code></a></h3>
+<p>Max amount of lines displayable in the console</p>
+<h3 id="start_line_offset-int"><a class="header" href="#start_line_offset-int"><code>start_line_offset: int</code></a></h3>
+<p>The integer offset at which to start logging lines</p>
+<h3 id="history_index-int"><a class="header" href="#history_index-int"><code>history_index: int</code></a></h3>
+<p>Index of the currently selected history command. Starts at 0 and increments by one on each press of the up arrow, decrements on each press of the down arrow</p>
+<h3 id="command_history-arraystring"><a class="header" href="#command_history-arraystring"><code>command_history: Array&lt;string&gt;</code></a></h3>
+<p>Table of commands in the history</p>
+<h3 id="history_path-string"><a class="header" href="#history_path-string"><code>history_path: string</code></a></h3>
+<p>Path relative to <code>BALATRO_SAVE_DIRECTORY</code> at which to save the history to</p>
+<h3 id="modifiers-mapstring-boolean"><a class="header" href="#modifiers-mapstring-boolean"><code>modifiers: Map&lt;string, boolean&gt;</code></a></h3>
+<p>Table representing which key modifiers are active at a certain point in time.</p>
+<p>Has the following keys :</p>
+<ul>
+<li><code>capslock</code></li>
+<li><code>scrolllock</code></li>
+<li><code>numlock</code></li>
+<li><code>shift</code></li>
+<li><code>ctrl</code></li>
+<li><code>alt</code></li>
+<li><code>meta</code></li>
+</ul>
+<p>Each key should be self explanatory. The <code>meta</code> modifier refers to either, depending on the system:</p>
+<ul>
+<li>the windows key</li>
+<li>the apple “command” key</li>
+</ul>
+<p>Lock keys (i.e. <code>scrolllock</code>, <code>capslock</code> and <code>numlock</code>) are toggleable. The game has no way to check whether the game was started with the key toggled on/off, and its state will be toggled on release of the corresponding key. This means that the state of these keys is undefined. If the state is true, it means the corresponding key has been pressed during the lifetime of the game, if the state is false it means that the state of the key is the same as the state it was when the game was first started.</p>
+<h3 id="commands-mapstring-command"><a class="header" href="#commands-mapstring-command"><code>commands: Map&lt;string, Command&gt;</code></a></h3>
+<p>Commands registered with <code>registerCommand</code> are stored here.</p>
+<h2 id="functions"><a class="header" href="#functions">FUNCTIONS</a></h2>
+<h3 id="toggleself---nil"><a class="header" href="#toggleself---nil"><code>toggle(self) -&gt; nil</code></a></h3>
+<p>Toggles the console on/off. When the console is toggled on, the <code>love.textinput</code> callback gets assigned an anonymous function to capture the text written accurately in the command prompt. The <code>love.textinput</code> function is unassigned (set to <code>nil</code>) when the console is toggled off.</p>
+<h3 id="longestcommonprefixself-strings-arraystring---string"><a class="header" href="#longestcommonprefixself-strings-arraystring---string"><code>longestCommonPrefix(self, strings: Array&lt;string&gt;) -&gt; string</code></a></h3>
+<p>Returns the longest common prefix from a set of strings, e.g.</p>
+<pre><code class="language-lua">local prefix = console:longestCommonPrefix({"state", "status", "stars"})
+print(prefix)
+-- Prints "sta"
+</code></pre>
+<p>This function is used internally by the autocompletion engine of the developer console.</p>
+<h3 id="tryautocompleteself---string"><a class="header" href="#tryautocompleteself---string"><code>tryAutocomplete(self) -&gt; string</code></a></h3>
+<p>Tries to autocomplete a command. For the first part of the command, the command name, the autocompletion is handled by looking at the typed command, and checking which registered commands match the prefix typed.</p>
+<p>For subsequent arguments, the <code>Command.autocomplete(current_arg, previous_args)</code> function is called with the current partial argument, and all previous arguments, in order from “left to right”.</p>
+<p>When several matches are found, instead of not completing, the autocomplete engine will return the longest common prefix between all potential command matches.</p>
+<h3 id="getmessagecolorself-message-message---tuplefloat-float-float"><a class="header" href="#getmessagecolorself-message-message---tuplefloat-float-float"><code>getMessageColor(self, message: Message) -&gt; Tuple&lt;float, float, float&gt;</code></a></h3>
+<p>Returns a 3-tuple of numbers between 0 and 1 (inclusive) corresponding to the <code>R</code>, <code>G</code> and <code>B</code> color the message should be printed as.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">LogLevel</th><th style="text-align: center">Color (hex)</th><th style="text-align: center">Color (tuple)</th><th style="text-align: center">Color</th></tr></thead><tbody>
+<tr><td style="text-align: left">PRINT</td><td style="text-align: center"><code>#FFFFFF</code></td><td style="text-align: center"><code>(1, 1, 1)</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">INFO</td><td style="text-align: center"><code>#00E6FF</code></td><td style="text-align: center"><code>(0, 0.9, 1)</code></td><td style="text-align: center"><span style="background-color:#00E6FF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">WARN</td><td style="text-align: center"><code>#FF8000</code></td><td style="text-align: center"><code>(1, 0.5, 0)</code></td><td style="text-align: center"><span style="background-color:#FF8000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">ERROR</td><td style="text-align: center"><code>#FF0000</code></td><td style="text-align: center"><code>(1, 0, 0)</code></td><td style="text-align: center"><span style="background-color:#FF0000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DEBUG</td><td style="text-align: center"><code>#2900FF</code></td><td style="text-align: center"><code>(0.16, 0, 1)</code></td><td style="text-align: center"><span style="background-color:#2900FF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">TRACE</td><td style="text-align: center"><code>#FFFFFF</code></td><td style="text-align: center"><code>(1, 1, 1)</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+</tbody></table>
+</div>
+<h3 id="getfilteredmessagesself---arraymessage"><a class="header" href="#getfilteredmessagesself---arraymessage"><code>getFilteredMessages(self) -&gt; Array&lt;Message&gt;</code></a></h3>
+<p>Returns, amongst all of the log messages, the messages matching a log level greater than, or equal to the console’s log level.</p>
+<h3 id="getmessagestodisplayself---arraymessage"><a class="header" href="#getmessagestodisplayself---arraymessage"><code>getMessagesToDisplay(self) -&gt; Array&lt;Message&gt;</code></a></h3>
+<p>Returns a table with all of the messages currently <em>on screen</em></p>
+<p>The array should <strong>always</strong> be of length <code>console.max_lines</code>, with a padding of <code>Message("PRINT", "")</code> if necessary</p>
+<h3 id="modifierslistenerself---nil"><a class="header" href="#modifierslistenerself---nil"><code>modifiersListener(self) -&gt; nil</code></a></h3>
+<p>Listener for changes in modifiers (see <a href="#modifiers-mapstring-boolean">modifiers</a>). When either the <code>ctrl</code> or <code>meta</code> modifiers is on, then the textinput callback is temporarily disabled. This is so that typing shortcuts in the console doesn’t interfere with text input in the command prompt.</p>
+<h3 id="typekeyself-key_name-string---nil"><a class="header" href="#typekeyself-key_name-string---nil"><code>typeKey(self, key_name: string) -&gt; nil</code></a></h3>
+<p>Callback used by the <code>dev_console</code> mod when <code>on_key_pressed</code> is called. This is the function responsible for handling the following shortcuts:</p>
+<ul>
+<li><code>meta + C</code> or <code>ctrl + C</code> : copies the current typed command into the clipboard</li>
+<li><code>meta + shift + C</code> or <code>ctrl + shift + C</code>: Copies all formatted logs on screen into the clipboard</li>
+<li><code>meta + V</code> or <code>ctrl + V</code>: pastes the contents of the clipboard into the command prompt, concatenating it to the existing prompt.</li>
+<li><code>escape</code>: close the console</li>
+<li><code>delete</code> or <code>meta + backspace</code>: clears the command prompt</li>
+<li><code>end</code> or <code>meta + left</code>: moves the text to the latest log message printed</li>
+<li><code>home</code> or <code>meta + right</code>: moves the text to the first log message</li>
+<li><code>pagedown</code> or <code>meta + down</code>: moves the text <code>console.max_lines</code> down</li>
+<li><code>pageup</code> or <code>meta + up</code>: moves the text <code>console.max_lines</code> up</li>
+<li><code>up</code>: navigates up in the history (previous commands)</li>
+<li><code>down</code>: navigates down in the history (towards more recent commands)</li>
+<li><code>tab</code>: tries completing the current command using the autocompletion engine</li>
+<li><code>backspace</code>: delete a character</li>
+<li><code>return</code> or <code>kp_enter</code>: submit the command
+<ul>
+<li>command return value defines whether the command is saved to history or not. A truthy return value (<code>true</code>) will add the command to history. Failed commands are not saved.</li>
+</ul>
+</li>
+</ul>
+<h3 id="addtohistoryself-command-string---nil"><a class="header" href="#addtohistoryself-command-string---nil"><code>addToHistory(self, command: string) -&gt; nil</code></a></h3>
+<p>Adds a non empty command to the <code>self.command_history</code> array, resets <code>self.history_index</code> to 0 and saves the history to a file.</p>
+<h3 id="registercommandself-name-string-callback-functionargs-arraystring-boolean-short_description-string-autocomplete-functioncurrent_arg-string-previous_args-arraystring-arraystring-usage-string-nil"><a class="header" href="#registercommandself-name-string-callback-functionargs-arraystring-boolean-short_description-string-autocomplete-functioncurrent_arg-string-previous_args-arraystring-arraystring-usage-string-nil"><code>registerCommand(self, name: string, callback: function(args: Array&lt;string&gt;)-&gt;boolean, short_description: string, autocomplete: function(current_arg: string, previous_args: Array&lt;string&gt;)-&gt;Array&lt;string&gt;, usage: string)-&gt;nil</code></a></h3>
+<p>Creates a new <code>Command</code> object and saves it to the <code>self.commands</code> map.</p>
+<p><code>name</code> is the command name. Self-explanatory, it’s just what the user will type in the prompt to run your command.</p>
+<p><code>callback</code> is the callback. It’s a simple lua function that will be called with the rest of the arguments passed in as input when the command is submitted. If the command finished successfully, return <code>true</code>, return <code>false</code> otherwise. This will control whether the command gets added to the history or not.</p>
+<div id="admonition-warning" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<div>
+<p>If your command contains sensitive information as arguments (passwords, API tokens, etc), then it should never return <code>true</code> because the history is saved as plain text.</p>
+<p>A bad actor could read the history file and figure out sensitive info from it.</p>
+</div>
+</div>
+<p><code>short_description</code> is just a string that will be printed when the built-in <code>help</code> command is run.</p>
+<p><code>autocomplete</code> is a simple lua function that should return a completion based on the current argument, and maybe the list of previous arguments.
+This function should return a table of suggested completions. The function <a href="#longestcommonprefixself-strings-arraystring---string"><code>console:longestCommonPrefix</code></a> will be then called amongst all those completions to fill in the maximum amount of characters.</p>
+<p><code>Usage</code> is just the usage string. The intent is to eventually automate bad usage error messages, but this is unused right now.</p>
+<h3 id="removecommandself-cmd_name-string---nil"><a class="header" href="#removecommandself-cmd_name-string---nil"><code>removeCommand(self, cmd_name: string) -&gt; nil</code></a></h3>
+<p>Removes a command. Call this function in your <code>on_disable</code> hook to make sure that your mod’s commands are not included if the mod is disabled</p>
+<h3 id="wraptextself-message-string-screenwidth-int---arraystring"><a class="header" href="#wraptextself-message-string-screenwidth-int---arraystring"><code>wrapText(self, message: string, screenWidth: int) -&gt; Array&lt;string&gt;</code></a></h3>
+<p>Wraps the text to fit within <code>screenWidth</code> pixels.</p>
+<h2 id="classes"><a class="header" href="#classes">CLASSES</a></h2>
+<h3 id="command"><a class="header" href="#command"><code>Command</code></a></h3>
+<h4 id="attributes"><a class="header" href="#attributes">ATTRIBUTES</a></h4>
+<ul>
+<li><code>call</code>: <code>function(args) -&gt; boolean</code>, the callback for the command</li>
+<li><code>desc</code>: <code>string</code>, the help text for the command, its description</li>
+<li><code>autocomplete</code>, <code>function(current_arg, previous_args) -&gt; Array&lt;string&gt;</code>, the autocomplete for the command</li>
+<li><code>usage</code>: <code>string</code>, the usage text for the command</li>
+</ul>
 
                     </main>
 

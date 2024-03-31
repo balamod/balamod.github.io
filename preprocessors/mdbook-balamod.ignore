@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+
+import json
+import sys
+from typing import Literal, TypedDict, TypeAlias
+import requests
+
+session = requests.session()
+session.headers.update({"User-Agent": "mdbook-balamod"})
+
+class BookConfig(TypedDict):
+    title: str | None
+    authors: list[str]
+    description: str | None
+    src: str
+    multilingual: bool
+    language: str | None
+    text_direction: Literal["LeftToRight"] | Literal["RightToLeft"] | None
+
+
+class BuildConfig(TypedDict):
+    build_dir: str
+    create_missing: bool
+    use_default_preprocessors: bool
+    extra_watch_dirs: list[str]
+
+
+class RustConfig(TypedDict):
+    edition: Literal["E2015"] | Literal["E2018"] | Literal["E2021"] | None
+
+
+class Config(TypedDict):
+    book: BookConfig
+    build: BuildConfig
+    rust: RustConfig
+
+
+class PreprocessorContext(TypedDict):
+    root: str
+    config: Config
+    renderer: str
+    mdbook_version: str
+
+BookItem: TypeAlias = "PartTitle" | Literal["Separator"] | "Chapter"
+
+class PartTitle(TypedDict):
+    PartTitle: str
+
+class Chapter(TypedDict):
+    name: str
+    content: str
+    number: list[int] | None
+    sub_items: list[BookItem] | None
+    path: str | None
+    source_path: str | None
+    parent_names: list[str]
+
+class Book(TypedDict):
+    sections: list[BookItem]
+
+
+def preprocess_book(context: PreprocessorContext, book: Book) -> Book:
+    # find the chapter named "Introduction", which is the homepage of the docs
+    for section in book["sections"]:
+        if section["name"].lower() == "introduction":
+            # and modify its content
+            section["content"] = "# Hello, world!\n\nThis is the new content of the Introduction chapter."
+            break
+    return book
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1: # we check if we received any argument
+        if sys.argv[1] == "supports":
+            # then we are good to return an exit status code of 0, since the other argument will just be the renderer's name
+            sys.exit(0)
+
+    # load both the context and the book representations from stdin
+    context, book = json.load(sys.stdin)
+    # and now, we can just modify the content of the first chapter
+    # we are done with the book's modification, we can just print it to stdout,
+    # and mdbook will take care of the rest
+    book = preprocess_book(context, book)
+    print(json.dumps(book), file=sys.stderr)
+    print(json.dumps(context), file=sys.stderr)
+    print(json.dumps(context))
+    print(json.dumps(book))

@@ -20,9 +20,9 @@ Download the binary that corresponds to your platform.
 
 | Platform | Download link |
 |----------|---------------|
-| <i class="fa fa-windows"></i> Windows  | [{{ balamod.release_name_windows }}]({{ balamod.release_url_windows }}) |
-| <i class="fa fa-apple"></i> macOS    | [{{ balamod.release_name_macos }}]({{ balamod.release_url_macos }}) |
-| <i class="fa fa-linux"></i> Linux    | [{{ balamod.release_name_linux }}]({{ balamod.release_url_linux }}) |
+| <i class="fa fa-windows"></i> Windows  | <a href="{{ balamod.release_url_windows }}">{{ balamod.release_name_windows }}</a> |
+| <i class="fa fa-apple"></i> macOS    | <a href="{{ balamod.release_url_macos }}">{{ balamod.release_name_macos }}</a> |
+| <i class="fa fa-linux"></i> Linux    | <a href="{{ balamod.release_url_linux }}">{{ balamod.release_name_linux }}</a> |
 
 You also can download the latest Balamod binary from the [GitHub releases page](https://github.com/UwUDev/balamod/releases/latest).
 

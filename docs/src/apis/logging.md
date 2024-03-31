@@ -93,14 +93,22 @@ Formats the message into a string to dump to the console, or to dump to a file. 
 
 Gets a logger, and creates one if name does not exist in the `LOGGERS` table
 
+<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/logging.lua#getLogger -->
+
 ### `saveLogs() -> nil`
 
 Serializes all logs to the disk.
+
+<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/logging.lua#saveLogs -->
 
 ### `getAllMessages() -> Message[]`
 
 Returns all logged messages, in order from oldest to newest.
 
+<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/logging.lua#getAllMessages -->
+
 ### `clearLogs() -> nil`
 
 Deletes all log messages.
+
+<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/logging.lua#clearLogs -->

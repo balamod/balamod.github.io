@@ -4,13 +4,13 @@
 
 ## GLOBALS
 
-~~~adminish info
+~~~admonish info
 This module does not expose any global variables
 ~~~
 
 ## CLASSES
 
-~~~adminish info
+~~~admonish info
 This module does not expose any classes
 ~~~
 

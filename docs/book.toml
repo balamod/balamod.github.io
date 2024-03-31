@@ -11,7 +11,7 @@ title = "Balamod Documentation"
 after = [ "links" ]
 [preprocessor.lua-links]
 [preprocessor.emojicodes]
-[preprocessor.classy]
+# [preprocessor.classy]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"

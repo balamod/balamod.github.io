@@ -449,8 +449,235 @@ table.insert(mods, my_mod)
 </code></pre>
 <p>Rename the file to <code>my_mod.lua</code> and place it in the <code>mods</code> folder. The mod will be loaded when the game is started.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ui-modding-basics"><a class="header" href="#ui-modding-basics">UI Modding Basics</a></h1>
-<p>TODO: This guide will cover the basics of UI modding in the game.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ui-modding-example"><a class="header" href="#ui-modding-example">UI Modding Example</a></h1>
+<p>Balatro comes with a built-in UI framework that draws most of the elements of the game. It may seem hard to grasp at first but it’s actually quite simple in its structure.</p>
+<h2 id="the-gfuncs-and-guidef-tables"><a class="header" href="#the-gfuncs-and-guidef-tables">The <code>G.FUNCS</code> and <code>G.UIDEF</code> tables</a></h2>
+<p>The game uses 2 tables for the UI.</p>
+<h3 id="gfuncs"><a class="header" href="#gfuncs"><code>G.FUNCS</code></a></h3>
+<p>It’s the table that holds all of the UI callbacks. Basically, whenever you click on a button, its associated to a function defined here. Functions in <code>G.FUNCS</code> match the following signature, the <code>UIElement</code> class being defined in <code>engine/ui.lua</code> :</p>
+<pre><code class="language-lua">function(element: UIElement) -&gt; nil
+</code></pre>
+<h3 id="guidef"><a class="header" href="#guidef"><code>G.UIDEF</code></a></h3>
+<p>It’s the table that holds the UI definitions for the game. An UI definition is a function that returns a table that has a very strict structure:</p>
+<pre><code class="language-lua">G.UIDEF.my_ui_definition = function(element)
+    return {
+        n = G.UIT.ROOT,
+        config = {},
+        nodes = {}
+    }
+end
+</code></pre>
+<p>Let’s break this down:</p>
+<ul>
+<li><code>n = G.UIT.ROOT</code>: n here represents the node “type”. There are several node types available in Balatro
+<ul>
+<li><code>T</code>, which is for text nodes</li>
+<li><code>B</code>, for boxes (which can be rounded)</li>
+<li><code>C</code>, for column layouts</li>
+<li><code>R</code>, for row layouts</li>
+<li><code>O</code>, for objects (such as cards and such)</li>
+<li><code>ROOT</code>, for the root node of an UI definition</li>
+</ul>
+</li>
+<li><code>config</code>: configuration for the node, holds several attributes, each for configuring alignments, or button behavior for instance</li>
+<li><code>nodes</code>: is an array of child nodes</li>
+</ul>
+<p>Think of the Balatro UI definition like you would an HTML document. In HTML, you’d write something like this</p>
+<div id="admonition-html-example" class="admonition admonish-example">
+<div class="admonition-title">
+<p>HTML example</p>
+<p><a class="admonition-anchor-link" href="ui-modding-basics.html#admonition-html-example"></a></p>
+</div>
+<div>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;input type="text"&gt;&lt;/input&gt;
+  &lt;div&gt;
+    &lt;span&gt;&lt;p&gt;Some Text&lt;/p&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;p&gt;Other Text&lt;/p&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+</div>
+<p>Which would roughly be equivalent to</p>
+<div id="admonition-example-html-equivalent-for-balatro-ui" class="admonition admonish-example">
+<div class="admonition-title">
+<p>Example HTML equivalent for Balatro UI</p>
+<p><a class="admonition-anchor-link" href="ui-modding-basics.html#admonition-example-html-equivalent-for-balatro-ui"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">{
+    n = G.UIT.ROOT,
+    config = {},
+    nodes = {
+        {
+            n = G.UIT.I,
+            config = {},
+        },
+        {
+            n = G.UIT.C,
+            config = {},
+            nodes = {
+                {
+                    n = G.UIT.R,
+                    config = {},
+                    nodes = {
+                        {
+                            n = G.UIT.T,
+                            config = { text = "Some Text" }
+                        },
+                    },
+                },
+                {
+                    n = G.UIT.R,
+                    config = {},
+                    nodes = {
+                        {
+                            n = G.UIT.T,
+                            config = { text = "Other Text" }
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
+</code></pre>
+</div>
+</div>
+<h2 id="configuration-options-for-each-ui-type"><a class="header" href="#configuration-options-for-each-ui-type">Configuration options for each UI type</a></h2>
+<h3 id="common-config-options"><a class="header" href="#common-config-options">Common config options</a></h3>
+<h3 id="text-options"><a class="header" href="#text-options">Text options</a></h3>
+<div id="admonition-info" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="ui-modding-basics.html#admonition-info"></a></p>
+</div>
+<div>
+<p>For text UI nodes, the following config table is expected, all values are optional (can be <code>nil</code>), unless specified otherwise.</p>
+</div>
+</div>
+<ul>
+<li><code>config.text</code>, must be specified, unless <code>config.ref_table</code> and <code>config.ref_value</code> are both provided. The text to display. Type: <code>string</code></li>
+<li><code>config.colour</code>, defaults to <code>G.C.UI.TEXT_LIGHT</code> (which is white with full opacity, <code>#FFFFFFFF</code>)</li>
+<li><code>config.scale</code>, defaults to <code>1</code>. Text scaling to apply to the text. Type: <code>float</code></li>
+<li><code>config.shadow</code>, defaults to <code>false</code>. Whether to draw a shadow behind the text. Type: <code>boolean</code></li>
+<li><code>config.focus_args</code></li>
+<li><code>config.ref_table</code>: a reference table, basically, the <code>text</code> value will be computed by looking up <code>config.ref_value</code> in <code>config.ref_table</code>.</li>
+<li><code>config.ref_value</code>: the value to look up into the provided <code>config.ref_table</code></li>
+<li><code>config.func</code></li>
+<li><code>config.id</code>: An unique ID for the node</li>
+<li><code>config.juice</code></li>
+<li><code>config.outline_colour</code>: Text outline colour</li>
+</ul>
+<h3 id="box-options"><a class="header" href="#box-options">Box options</a></h3>
+<h3 id="column-options"><a class="header" href="#column-options">Column options</a></h3>
+<h3 id="row-options"><a class="header" href="#row-options">Row options</a></h3>
+<h3 id="object-options"><a class="header" href="#object-options">Object options</a></h3>
+<h2 id="premade-ui-widget-factories"><a class="header" href="#premade-ui-widget-factories">Premade UI widget factories</a></h2>
+<p>The following functions are defined in <code>functions/UI_definitions.lua</code>, and use the concepts defined above
+to make more complex UI elements.</p>
+<h3 id="create_sliderargs---uielement"><a class="header" href="#create_sliderargs---uielement"><code>create_slider(args) -&gt; UIElement</code></a></h3>
+<h3 id="create_toggleargs---uielement"><a class="header" href="#create_toggleargs---uielement"><code>create_toggle(args) -&gt; UIElement</code></a></h3>
+<h3 id="create_option_cycleargs---uielement"><a class="header" href="#create_option_cycleargs---uielement"><code>create_option_cycle(args) -&gt; UIElement</code></a></h3>
+<h3 id="create_tabsargs---uielement"><a class="header" href="#create_tabsargs---uielement"><code>create_tabs(args) -&gt; UIElement</code></a></h3>
+<h3 id="create_text_inputargs---uielement"><a class="header" href="#create_text_inputargs---uielement"><code>create_text_input(args) -&gt; UIElement</code></a></h3>
+<h3 id="create_keyboard_inputargs---uielement"><a class="header" href="#create_keyboard_inputargs---uielement"><code>create_keyboard_input(args) -&gt; UIElement</code></a></h3>
+<h2 id="enumerations"><a class="header" href="#enumerations">Enumerations</a></h2>
+<h3 id="colours"><a class="header" href="#colours">Colours</a></h3>
+<p>Colors are specified in <code>globals.lua</code>, you can access them through the <code>G.C</code> table.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Color Name</th><th style="text-align: center">Color (hex)</th><th style="text-align: center">Color (tuple)</th><th style="text-align: center">Color</th></tr></thead><tbody>
+<tr><td style="text-align: left">MULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">CHIPS</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">MONEY</td><td style="text-align: center"><code>#F3B958</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F3B958;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">XMULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">FILTER</td><td style="text-align: center"><code>#FF9A00</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLUE</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">RED</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">GREEN</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">PALE_GREEN</td><td style="text-align: center"><code>#56A887</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#56A887;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">ORANGE</td><td style="text-align: center"><code>#FDA200</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FDA200;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">IMPORTANT</td><td style="text-align: center"><code>#FF9A00</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">GOLD</td><td style="text-align: center"><code>#EAC058</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EAC058;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">YELLOW</td><td style="text-align: center"><code>#FFFF00FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFF00;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">CLEAR</td><td style="text-align: center"><code>#00000000</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">WHITE</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">PURPLE</td><td style="text-align: center"><code>#8867A5</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#8867A5;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLACK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">L_BLACK</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">GREY</td><td style="text-align: center"><code>#5F7377</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#5F7377;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">CHANCE</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">JOKER_GREY</td><td style="text-align: center"><code>#BFC7D5</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#BFC7D5;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">VOUCHER</td><td style="text-align: center"><code>#CB724C</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CB724C;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BOOSTER</td><td style="text-align: center"><code>#646EB7</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#646EB7;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">EDITION</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DARK_EDITION</td><td style="text-align: center"><code>#000000FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">ETERNAL</td><td style="text-align: center"><code>#C75985</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#C75985;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DYN_UI.MAIN</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DYN_UI.DARK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DYN_UI.BOSS_MAIN</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DYN_UI.BOSS_DARK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">DYN_UI.BOSS_PALE</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_1.HEARTS</td><td style="text-align: center"><code>#F03464</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F03464;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_1.DIAMONDS</td><td style="text-align: center"><code>#F06B3F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F06B3F;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_1.SPADES</td><td style="text-align: center"><code>#403995</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#403995;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_1.CLUBS</td><td style="text-align: center"><code>#235955</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#235955;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_2.HEARTS</td><td style="text-align: center"><code>#F83B2F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F83B2F;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_2.DIAMONDS</td><td style="text-align: center"><code>#E29000</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#E29000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_2.SPADES</td><td style="text-align: center"><code>#4F31B9</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F31B9;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SO_2.CLUBS</td><td style="text-align: center"><code>#008EE6</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#008EE6;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SUITS.HEARTS</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SUITS.DIAMONDS</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SUITS.SPADES</td><td style="text-align: center"><code>#374649</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374649;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SUITS.CLUBS</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.TEXT_LIGHT</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.TEXT_DARK</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.TEXT_INACTIVE</td><td style="text-align: center"><code>#88888899</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#888888;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.BACKGROUND_LIGHT</td><td style="text-align: center"><code>#B8D8D8</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B8D8D8;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.BACKGROUND_WHITE</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.BACKGROUND_DARK</td><td style="text-align: center"><code>#7A9E9F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#7A9E9F;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.BACKGROUND_INACTIVE</td><td style="text-align: center"><code>#666666FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#666666;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.OUTLINE_LIGHT</td><td style="text-align: center"><code>#D8D8D8</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#D8D8D8;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.TRANSPARENT_LIGHT</td><td style="text-align: center"><code>#EEEEEE22</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EEEEEE;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.TRANSPARENT_DARK</td><td style="text-align: center"><code>#22222222</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#222222;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI.HOVER</td><td style="text-align: center"><code>#00000055</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.DEFAULT</td><td style="text-align: center"><code>#CDD9DC</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.ENHANCED</td><td style="text-align: center"><code>#CDD9DC</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.JOKER</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.TAROT</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.PLANET</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.SPECTRAL</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SET.VOUCHER</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.DEFAULT</td><td style="text-align: center"><code>#9BB6BDFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#9BB6BD;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.ENHANCED</td><td style="text-align: center"><code>#8389DDFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#8389DD;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.JOKER</td><td style="text-align: center"><code>#708B91</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#708B91;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.TAROT</td><td style="text-align: center"><code>#A782D1</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#A782D1;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.PLANET</td><td style="text-align: center"><code>#13AFCE</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#13AFCE;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.SPECTRAL</td><td style="text-align: center"><code>#4584FA</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4584FA;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.VOUCHER</td><td style="text-align: center"><code>#FD682B</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FD682B;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">SECONDARY_SET.EDITION</td><td style="text-align: center"><code>#4CA893</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4CA893;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">RARITY.1</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">RARITY.2</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">RARITY.3</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">RARITY.4</td><td style="text-align: center"><code>#B26CBB</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B26CBB;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLIND.SMALL</td><td style="text-align: center"><code>#50846E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLIND.BIG</td><td style="text-align: center"><code>#50846E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLIND.BOSS</td><td style="text-align: center"><code>#B44430</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B44430;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BLIND.WON</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.0</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.1</td><td style="text-align: center"><code>#EFEFEF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EFEFEF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.2</td><td style="text-align: center"><code>#95ACFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#95ACFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.3</td><td style="text-align: center"><code>#65EFAF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#65EFAF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.4</td><td style="text-align: center"><code>#FAE37E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FAE37E;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.5</td><td style="text-align: center"><code>#FFC052</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFC052;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.6</td><td style="text-align: center"><code>#F87D75</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F87D75;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">HAND_LEVELS.7</td><td style="text-align: center"><code>#CAA0EF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CAA0EF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BACKGROUND.L</td><td style="text-align: center"><code>#FFFF00FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFF00;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BACKGROUND.D</td><td style="text-align: center"><code>#00FFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#00FFFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">BACKGROUND.C</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI_CHIPS</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
+<tr><td style="text-align: left">UI_MULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="ui-modding-example"><a class="header" href="#ui-modding-example">UI Modding Example</a></h1>
 <p>TODO: This guide will cover an example of UI modding in the game.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contributing-guide"><a class="header" href="#contributing-guide">Contributing Guide</a></h1>
 <p>This guide is intended to help you get started with contributing to the game mod-loader. If you have any questions, feel free to ask in the <a href="https://discord.gg/p7DeW7pSzA" title="" target="_blank">Discord server</a>.</p>

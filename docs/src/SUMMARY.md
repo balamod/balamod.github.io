@@ -25,6 +25,7 @@
   - [`utils`](./apis/utils.md)
   - [`tar`](./apis/tar.md)
   - [`https`](./apis/https.md)
+  - [`seal`](./apis/seal.md)
 
 
 # Other Resources

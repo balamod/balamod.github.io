@@ -16,7 +16,7 @@ This module does not expose any classes.
 
 ## FUNCTIONS
 
-### seal.registerSeal(args: table)
+### seal.registerSeal(args: table) -> nil
 
 Takes args:
 - mod_id, string: The ID of the mod this seal will be attached to.
@@ -44,11 +44,11 @@ Takes args:
         - "card = self"
 - effect, function: A function containing all the conditionals and effects of a particular seal. Examples for a few of the timings are below.
 
-### seal.unregisterSeal(id)
+### seal.unregisterSeal(id) -> nil
 
 Pass a seal `id`, and it will be removed from the game. Generally, place this in `on_disable`.
 
-### seal.addSealInfotip(set: string, name: string, seal_id: string)
+### seal.addSealInfotip(set: string, name: string, seal_id: string) -> nil
 
 For any consumeables or jokers that might reference a custom seal object, use this function to add in the extra tooltip containing the seal's description.
 - set: the name of the set you're using this for, like "Spectral" or "Joker"
@@ -56,19 +56,6 @@ For any consumeables or jokers that might reference a custom seal object, use th
 - seal_id: the id of the seal you want this to refer to. Identical to the `id` attribute from `registerSeal`
 
 ## Usage Examples
-
-### Descriptions
-
-`{C:[colorname]}[text]{}` is used for colored text. Colors are available [here](https://balamod.github.io/ui-modding-basics.html).
-Line breaks are placed in between text objects.
-
-```lua
-description = {"Earn {C:money}$6{} when this", "card is played", "and scores"}
-description = {"Creates 2 {C:planet}Planet{} cards", "if this card is {C:attention}held{} in", "hand at end of round", "{C:inactive}(Must have room)"}
-description = {"Retrigger this", "card {C:attention}2{} times"}
-description = {"Creates 2 {C:tarot}Tarot{} cards", "when {C:attention}discarded.", "{C:inactive}(Must have room)"}
-description = {"Creates 2 {C:spectral}Spectral{} cards", "if this card is {C:attention}held{} in", "hand at end of round"}
-```
 
 ### Effects
 

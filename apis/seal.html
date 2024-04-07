@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>seal - Balamod Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././assets/css/mdbook-admonish.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../mod-loading.html"><strong aria-hidden="true">3.</strong> Mod Loading</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">4.</strong> FAQ</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guide</li><li class="chapter-item expanded "><a href="../modding-basics.html"><strong aria-hidden="true">5.</strong> Modding Basics</a></li><li class="chapter-item expanded "><a href="../ui-modding-basics.html"><strong aria-hidden="true">6.</strong> UI Modding Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ui-modding-example.html"><strong aria-hidden="true">6.1.</strong> UI Modding Example</a></li></ol></li><li class="chapter-item expanded "><a href="../contributing.html"><strong aria-hidden="true">7.</strong> Contributing Guide</a></li><li class="chapter-item expanded "><a href="../mod-format.html"><strong aria-hidden="true">8.</strong> Mod Format</a></li><li class="chapter-item expanded "><a href="../apis/apis.html"><strong aria-hidden="true">9.</strong> APIs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../apis/logging.html"><strong aria-hidden="true">9.1.</strong> logging</a></li><li class="chapter-item expanded "><a href="../apis/platform.html"><strong aria-hidden="true">9.2.</strong> platform</a></li><li class="chapter-item expanded "><a href="../apis/console.html"><strong aria-hidden="true">9.3.</strong> console</a></li><li class="chapter-item expanded "><a href="../apis/assets.html"><strong aria-hidden="true">9.4.</strong> assets</a></li><li class="chapter-item expanded "><a href="../apis/patches.html"><strong aria-hidden="true">9.5.</strong> patches</a></li><li class="chapter-item expanded "><a href="../apis/utils.html"><strong aria-hidden="true">9.6.</strong> utils</a></li><li class="chapter-item expanded "><a href="../apis/tar.html"><strong aria-hidden="true">9.7.</strong> tar</a></li><li class="chapter-item expanded "><a href="../apis/https.html"><strong aria-hidden="true">9.8.</strong> https</a></li><li class="chapter-item expanded "><a href="../apis/seal.html" class="active"><strong aria-hidden="true">9.9.</strong> seal</a></li></ol></li><li class="chapter-item expanded "><a href="../tools/tools.html"><strong aria-hidden="true">10.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/aseprite.html"><strong aria-hidden="true">10.1.</strong> Aseprite</a></li><li class="chapter-item expanded "><a href="../tools/vscode.html"><strong aria-hidden="true">10.2.</strong> VSCode</a></li><li class="chapter-item expanded "><a href="../tools/cookiecutter.html"><strong aria-hidden="true">10.3.</strong> Cookiecutter</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Other Resources</li><li class="chapter-item expanded "><a href="../community-mods.html"><strong aria-hidden="true">11.</strong> Community Mods</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Balamod Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/balamod/balamod.github.io" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/balamod/balamod.github.io/edit/main/docs/src/apis/seal.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="seal"><a class="header" href="#seal">seal</a></h1>
+<ul>
+<li><a href="#globals">GLOBALS</a></li>
+<li><a href="#classes">CLASSES</a></li>
+<li><a href="#functions">FUNCTIONS</a>
+<ul>
+<li><a href="#sealregistersealargs-table---nil">seal.registerSeal(args: table) -&gt; nil</a></li>
+<li><a href="#sealunregistersealid---nil">seal.unregisterSeal(id) -&gt; nil</a></li>
+<li><a href="#sealaddsealinfotipset-string-name-string-seal_id-string---nil">seal.addSealInfotip(set: string, name: string, seal_id: string) -&gt; nil</a></li>
+</ul>
+</li>
+<li><a href="#usage-examples">Usage Examples</a>
+<ul>
+<li><a href="#effects">Effects</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="globals"><a class="header" href="#globals">GLOBALS</a></h2>
+<div id="admonition-info" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="#admonition-info"></a></p>
+</div>
+<div>
+<p>This module does not expose any global variables.</p>
+</div>
+</div>
+<h2 id="classes"><a class="header" href="#classes">CLASSES</a></h2>
+<div id="admonition-info-1" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="#admonition-info-1"></a></p>
+</div>
+<div>
+<p>This module does not expose any classes.</p>
+</div>
+</div>
+<h2 id="functions"><a class="header" href="#functions">FUNCTIONS</a></h2>
+<h3 id="sealregistersealargs-table---nil"><a class="header" href="#sealregistersealargs-table---nil">seal.registerSeal(args: table) -&gt; nil</a></h3>
+<p>Takes args:</p>
+<ul>
+<li>mod_id, string: The ID of the mod this seal will be attached to.</li>
+<li>id, string: The name of the seal object with no spaces and no “_seal” at the end. The “_seal” suffix will be added later automatically.</li>
+<li>label, string: The name of the seal as you wish for it to appear in game.</li>
+<li>color, string: The color of the seal’s badge and text. Refer to the color list <a href="https://balamod.github.io/ui-modding-basics.html" title="" target="_blank">here</a>.</li>
+<li>description, table: The text description for the object. Check the provided example at the bottom.</li>
+<li>shader, string: The name of the shader to apply to the seal on render. Valid options are:
+<ul>
+<li>dissolve (the default shader)</li>
+<li>voucher (like the one Gold seals use)</li>
+<li>negative</li>
+<li>holo</li>
+<li>foil</li>
+<li>polychrome</li>
+<li>hologram (works, but has almost no visible effect)</li>
+<li>vortex (works, and looks hilarious, but probably not a good idea to use)</li>
+</ul>
+</li>
+<li>timing, string: Denotes the game action where this seal should trigger. Valid options are:
+<ul>
+<li>onDiscard: triggers when discarding a card.</li>
+<li>onHold: triggers when holding a card at the end of round.</li>
+<li>onEval: triggers when playing a card</li>
+<li>onDollars: triggers only when Gold Seal would otherwise trigger, and must return a number.</li>
+<li>onRepetition: triggers only when Red Seal would trigger, and must return a table containing:
+<ul>
+<li>message, a string</li>
+<li>repetitions, an int</li>
+<li>“card = self”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>effect, function: A function containing all the conditionals and effects of a particular seal. Examples for a few of the timings are below.</li>
+</ul>
+<h3 id="sealunregistersealid---nil"><a class="header" href="#sealunregistersealid---nil">seal.unregisterSeal(id) -&gt; nil</a></h3>
+<p>Pass a seal <code>id</code>, and it will be removed from the game. Generally, place this in <code>on_disable</code>.</p>
+<h3 id="sealaddsealinfotipset-string-name-string-seal_id-string---nil"><a class="header" href="#sealaddsealinfotipset-string-name-string-seal_id-string---nil">seal.addSealInfotip(set: string, name: string, seal_id: string) -&gt; nil</a></h3>
+<p>For any consumeables or jokers that might reference a custom seal object, use this function to add in the extra tooltip containing the seal’s description.</p>
+<ul>
+<li>set: the name of the set you’re using this for, like “Spectral” or “Joker”</li>
+<li>name: the name of the item you’re using this with, such as “Deja Vu” or “Certificate”</li>
+<li>seal_id: the id of the seal you want this to refer to. Identical to the <code>id</code> attribute from <code>registerSeal</code></li>
+</ul>
+<h2 id="usage-examples"><a class="header" href="#usage-examples">Usage Examples</a></h2>
+<h3 id="effects"><a class="header" href="#effects">Effects</a></h3>
+<pre><code class="language-lua">local function sealEffectGold(self) --Uses the onDollars timing.
+    local ret = 0
+    if self.seal == 'DoubleGold' then
+        ret = ret + 6
+    end
+    return ret
+end
+
+local function sealEffectRed(self, context) --Uses the onRepetition timing. Note that "if context.repetition then" is still required.
+    if context.repetition then
+        if self.seal == 'DoubleRed' then
+            return {
+                message = localize('k_again_ex'),
+                repetitions = 2,
+                card = self
+            }
+        end
+    end
+end
+
+local function sealEffectPurple(self, context) --Uses the onDiscard timing. Note that "if context.discard then" is still required.
+    if context.discard then
+        if self.seal == 'DoublePurple' and #G.consumeables.cards + G.GAME.consumeable_buffer &lt;
+            G.consumeables.config.card_limit then
+            for i = 1, math.min(2, G.consumeables.config.card_limit - #G.consumeables.cards) do
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                if #G.consumeables.cards + G.GAME.consumeable_buffer &gt; G.consumeables.config.card_limit then
+                    break
+                end
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'before',
+                    delay = 0.0,
+                    func = (function()
+                        local card = create_card('Tarot', G.consumeables, nil, nil, nil, nil, nil, 'pplsl')
+                        card:add_to_deck()
+                        G.consumeables:emplace(card)
+                        G.GAME.consumeable_buffer = 0
+                        return true
+                    end)
+                }))
+            end
+            card_eval_status_text(self, 'extra', nil, nil, nil, {
+                message = "+2 Tarot",
+                colour = G.C.PURPLE
+            })
+        end
+    end
+end
+
+local function sealEffectBlue(self, context) --Uses the onHold timing.
+    local ret = {}
+    if self.seal == 'DoubleBlue' and #G.consumeables.cards + G.GAME.consumeable_buffer &lt;
+        G.consumeables.config.card_limit then
+        local card_type = 'Planet'
+        for i = 1, math.min(2, G.consumeables.config.card_limit - #G.consumeables.cards) do
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            if #G.consumeables.cards + G.GAME.consumeable_buffer &gt; G.consumeables.config.card_limit then
+                break
+            end
+            G.E_MANAGER:add_event(Event({
+                trigger = 'before',
+                delay = 0.0,
+                func = (function()
+                    local card = create_card(card_type, G.consumeables, nil, nil, nil, nil, nil, 'blusl')
+                    card:add_to_deck()
+                    G.consumeables:emplace(card)
+                    G.GAME.consumeable_buffer = 0
+                    return true
+                end)
+            }))
+        end
+        card_eval_status_text(self, 'extra', nil, nil, nil, {
+            message = "+2 Planet",
+            colour = G.C.SECONDARY_SET.Planet
+        })
+        ret.effect = true
+    end
+end
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../apis/https.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../tools/tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../apis/https.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../tools/tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

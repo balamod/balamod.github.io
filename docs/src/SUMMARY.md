@@ -25,7 +25,10 @@
   - [`utils`](./apis/utils.md)
   - [`tar`](./apis/tar.md)
   - [`https`](./apis/https.md)
-
+- [Tools](./tools/tools.md)
+  - [Aseprite](./tools/aseprite.md)
+  - [VSCode](./tools/vscode.md)
+  - [Cookiecutter](./tools/cookiecutter.md)
 
 # Other Resources
 

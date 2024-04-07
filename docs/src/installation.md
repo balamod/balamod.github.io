@@ -4,7 +4,7 @@ If you are new to Balamod, this guide will help you install Balamod mod-loader o
 
 After the injection, You are able to browse the mods contributed by the community in the in-game Mod Menu.
 
-![Balamod Mod Gallary](images/Balamod_mods_gallery.png)
+![Balamod Mod Gallery](images/Balamod_mods_gallery.png)
 
 ## Download Balamod Binary
 

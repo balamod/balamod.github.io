@@ -25,6 +25,8 @@
   - [`utils`](./apis/utils.md)
   - [`tar`](./apis/tar.md)
   - [`https`](./apis/https.md)
+  - [`seal`](./apis/seal.md)
+
 - [Tools](./tools/tools.md)
   - [Aseprite](./tools/aseprite.md)
   - [VSCode](./tools/vscode.md)

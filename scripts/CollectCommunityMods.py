@@ -4,9 +4,9 @@ import requests
 session = requests.session()
 session.headers.update({"User-Agent": "Balamod client"})
 
-USER="UwUDev"
+USER="balamod"
 REPO="balamod"
-github_repo_api = f"https://api.github.com/repos/{USER}/{REPO}/releases/latest"
+github_repo_api = f"https://api.github.com/repos/{USER}/balamod-gui/releases/latest"
 mods_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/repos.index"
 apis_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/apis.index"
 

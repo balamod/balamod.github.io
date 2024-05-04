@@ -1,16 +1,28 @@
 from urllib.request import Request, urlopen
 import json
 
-USER="UwUDev"
+USER="balamod"
 REPO="balamod"
-github_repo_api = f"https://api.github.com/repos/{USER}/{REPO}/releases/latest"
-mods_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/repos.index"
-apis_repo_index_url = f"https://raw.githubusercontent.com/{USER}/{REPO}/master/apis.index"
+github_repo_api = f"https://api.github.com/repos/balamod/balamod/releases/latest"
+github_gui_repo_api = f"https://api.github.com/repos/balamod/balamod-gui/releases/latest"
+mods_repo_index_url = f"https://raw.githubusercontent.com/balamod/balamod/master/repos.index"
+apis_repo_index_url = f"https://raw.githubusercontent.com/balamod/balamod/master/apis.index"
 headers = {"User-Agent": "Balamod client"}
 
 config_path = "src/context.json"
 config_obj={
     "balamod": {
+        "latest_tag": None,
+        "latest_url": None,
+        "published_at": None,
+        "release_url_linux": None,
+        "release_name_linux": None,
+        "release_url_windows": None,
+        "release_name_windows": None,
+        "release_url_macos": None,
+        "release_name_macos": None,
+    },
+    "balamod_gui": {
         "latest_tag": None,
         "latest_url": None,
         "published_at": None,
@@ -29,27 +41,27 @@ def request(url):
     response = urlopen(req)
     return response.read().decode()
 
-def get_balamod_version():
+def get_balamod_version(key: str, url: str):
     global config_obj
-    res = request(github_repo_api)
+    res = request(url)
     if not res:
         raise Exception("Error: Failed to get latest release")
     res = json.loads(res)
-    config_obj["balamod"]["latest_tag"] = res["tag_name"]
-    config_obj["balamod"]["latest_url"] = res["html_url"]
-    config_obj["balamod"]["published_at"] = res["published_at"]
+    config_obj[key]["latest_tag"] = res["tag_name"]
+    config_obj[key]["latest_url"] = res["html_url"]
+    config_obj[key]["published_at"] = res["published_at"]
 
     linux_assets = next((asset for asset in res["assets"] if "linux" in asset["name"]), None)
-    config_obj["balamod"]["release_url_linux"] = linux_assets["browser_download_url"] if linux_assets else None
-    config_obj["balamod"]["release_name_linux"] = linux_assets["name"] if linux_assets else None
+    config_obj[key]["release_url_linux"] = linux_assets["browser_download_url"] if linux_assets else None
+    config_obj[key]["release_name_linux"] = linux_assets["name"] if linux_assets else None
 
     windows_assets = next((asset for asset in res["assets"] if "windows" in asset["name"]), None)
-    config_obj["balamod"]["release_url_windows"] = windows_assets["browser_download_url"] if windows_assets else None
-    config_obj["balamod"]["release_name_windows"] = windows_assets["name"] if windows_assets else None
+    config_obj[key]["release_url_windows"] = windows_assets["browser_download_url"] if windows_assets else None
+    config_obj[key]["release_name_windows"] = windows_assets["name"] if windows_assets else None
 
-    macos_assets = next((asset for asset in res["assets"] if "mac" in asset["name"]), None)
-    config_obj["balamod"]["release_url_macos"] = macos_assets["browser_download_url"] if macos_assets else None
-    config_obj["balamod"]["release_name_macos"] = macos_assets["name"] if macos_assets else None
+    macos_assets = next((asset for asset in res["assets"] if "mac" in asset["name"] or ".pkg" in asset["name"]), None)
+    config_obj[key]["release_url_macos"] = macos_assets["browser_download_url"] if macos_assets else None
+    config_obj[key]["release_name_macos"] = macos_assets["name"] if macos_assets else None
     print("Successfully collected balamod version")
 
 
@@ -81,7 +93,8 @@ def collect(url, section):
 
 def main():
     global config_obj
-    get_balamod_version()
+    get_balamod_version("balamod", github_repo_api)
+    get_balamod_version("balamod_gui", github_gui_repo_api)
     collect(mods_repo_index_url, "mods")
 
     with open(config_path, "w") as f:

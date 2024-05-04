@@ -6,7 +6,41 @@ After the injection, You are able to browse the mods contributed by the communit
 
 ![Balamod Mod Gallery](images/Balamod_mods_gallery.png)
 
-## Download Balamod Binary
+## Install using the GUI (recommended)
+
+Since balamod 1.x, a graphical user interface has been made in order to ease the installation process.
+Currently, the latest version is `{{balamod_gui.latest_tag}}` published on `{{ balamod_gui.published_at | date(format="%Y-%m-%d %H:%M") }}`.
+
+Download the binary that corresponds to your platform.
+
+| Platform | Download link |
+|----------|---------------|
+| <i class="fa fa-windows"></i> Windows  | <a href="{{ balamod_gui.release_url_windows }}">{{ balamod_gui.release_name_windows }}</a> |
+| <i class="fa fa-apple"></i> macOS    | <a href="{{ balamod_gui.release_url_macos }}">{{ balamod_gui.release_name_macos }}</a> |
+| <i class="fa fa-linux"></i> Linux    | <a href="{{ balamod_gui.release_url_linux }}">{{ balamod_gui.release_name_linux }}</a> |
+
+You also can download the latest Balamod binary from the [GitHub releases page](https://github.com/balamod/balamod-gui/releases/latest).
+
+### Windows
+
+Unzip the archive, and run `balamod.exe`. The executable is not signed so you will have to authorize it to run.
+
+### Linux
+
+In a terminal, run the following to download the archive, untar it and execute the gui
+
+```sh
+$ curl -fsSL "{{ balamod_gui.release_url_linux }}"
+$ tar xzvf balamod-linux.tar.gz
+$ chmod +x ./balamod-linux/balamod
+$ ./balamod-linux/balamod
+```
+
+### MacOS
+
+Download the pkg file, then double click it. Go through the installer, and you'll find Balamod installed in your `/Applications` folder
+
+## Install using the CLI (legacy)
 
 Currently, the latest version is `{{ balamod.latest_tag }}` published on `{{ balamod.published_at | date(format="%Y-%m-%d %H:%M") }}`.
 
@@ -24,9 +58,7 @@ Download the binary that corresponds to your platform.
 | <i class="fa fa-apple"></i> macOS    | <a href="{{ balamod.release_url_macos }}">{{ balamod.release_name_macos }}</a> |
 | <i class="fa fa-linux"></i> Linux    | <a href="{{ balamod.release_url_linux }}">{{ balamod.release_name_linux }}</a> |
 
-You also can download the latest Balamod binary from the [GitHub releases page](https://github.com/UwUDev/balamod/releases/latest).
-
-## Install Balamod
+You also can download the latest Balamod binary from the [GitHub releases page](https://github.com/balamod/balamod/releases/latest).
 
 ### Windows
 

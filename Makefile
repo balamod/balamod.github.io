@@ -5,7 +5,7 @@ serve: build
 	@cd docs && PATH="$(PWD)/preprocessors:$(PWD)/backends:$$PATH" mdbook serve -n 0.0.0.0 -p 3000
 
 context:
-	@cd docs && $(PYTHON) ../scripts/CollectCommunityMods.py
+	@cd docs && $(PYTHON) ../scripts/generate_context.py
 
 build: context
 	@cd docs && PATH="$(PWD)/preprocessors:$(PWD)/backends:$$PATH" mdbook build

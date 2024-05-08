@@ -69,6 +69,8 @@ jobs:
       - name: mdBook build
         run: |
           make build
+        env:
+          BALATRO_GLOBALS_LUA_BASE64: ${{ secrets.BALATRO_GLOBALS_LUA_BASE64 }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

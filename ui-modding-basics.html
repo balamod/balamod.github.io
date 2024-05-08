@@ -317,98 +317,565 @@ to make more complex UI elements.</p>
 <h2 id="enumerations"><a class="header" href="#enumerations">Enumerations</a></h2>
 <h3 id="colours"><a class="header" href="#colours">Colours</a></h3>
 <p>Colors are specified in <code>globals.lua</code>, you can access them through the <code>G.C</code> table.</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Color Name</th><th style="text-align: center">Color (hex)</th><th style="text-align: center">Color (tuple)</th><th style="text-align: center">Color</th></tr></thead><tbody>
-<tr><td style="text-align: left">MULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">CHIPS</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">MONEY</td><td style="text-align: center"><code>#F3B958</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F3B958;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">XMULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">FILTER</td><td style="text-align: center"><code>#FF9A00</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLUE</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">RED</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">GREEN</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">PALE_GREEN</td><td style="text-align: center"><code>#56A887</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#56A887;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">ORANGE</td><td style="text-align: center"><code>#FDA200</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FDA200;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">IMPORTANT</td><td style="text-align: center"><code>#FF9A00</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">GOLD</td><td style="text-align: center"><code>#EAC058</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EAC058;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">YELLOW</td><td style="text-align: center"><code>#FFFF00FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFF00;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">CLEAR</td><td style="text-align: center"><code>#00000000</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">WHITE</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">PURPLE</td><td style="text-align: center"><code>#8867A5</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#8867A5;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLACK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">L_BLACK</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">GREY</td><td style="text-align: center"><code>#5F7377</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#5F7377;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">CHANCE</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">JOKER_GREY</td><td style="text-align: center"><code>#BFC7D5</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#BFC7D5;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">VOUCHER</td><td style="text-align: center"><code>#CB724C</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CB724C;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BOOSTER</td><td style="text-align: center"><code>#646EB7</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#646EB7;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">EDITION</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DARK_EDITION</td><td style="text-align: center"><code>#000000FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">ETERNAL</td><td style="text-align: center"><code>#C75985</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#C75985;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DYN_UI.MAIN</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DYN_UI.DARK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DYN_UI.BOSS_MAIN</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DYN_UI.BOSS_DARK</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">DYN_UI.BOSS_PALE</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_1.HEARTS</td><td style="text-align: center"><code>#F03464</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F03464;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_1.DIAMONDS</td><td style="text-align: center"><code>#F06B3F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F06B3F;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_1.SPADES</td><td style="text-align: center"><code>#403995</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#403995;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_1.CLUBS</td><td style="text-align: center"><code>#235955</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#235955;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_2.HEARTS</td><td style="text-align: center"><code>#F83B2F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F83B2F;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_2.DIAMONDS</td><td style="text-align: center"><code>#E29000</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#E29000;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_2.SPADES</td><td style="text-align: center"><code>#4F31B9</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F31B9;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SO_2.CLUBS</td><td style="text-align: center"><code>#008EE6</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#008EE6;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SUITS.HEARTS</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SUITS.DIAMONDS</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SUITS.SPADES</td><td style="text-align: center"><code>#374649</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374649;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SUITS.CLUBS</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.TEXT_LIGHT</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.TEXT_DARK</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.TEXT_INACTIVE</td><td style="text-align: center"><code>#88888899</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#888888;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.BACKGROUND_LIGHT</td><td style="text-align: center"><code>#B8D8D8</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B8D8D8;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.BACKGROUND_WHITE</td><td style="text-align: center"><code>#FFFFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFFFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.BACKGROUND_DARK</td><td style="text-align: center"><code>#7A9E9F</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#7A9E9F;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.BACKGROUND_INACTIVE</td><td style="text-align: center"><code>#666666FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#666666;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.OUTLINE_LIGHT</td><td style="text-align: center"><code>#D8D8D8</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#D8D8D8;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.TRANSPARENT_LIGHT</td><td style="text-align: center"><code>#EEEEEE22</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EEEEEE;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.TRANSPARENT_DARK</td><td style="text-align: center"><code>#22222222</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#222222;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI.HOVER</td><td style="text-align: center"><code>#00000055</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#000000;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.DEFAULT</td><td style="text-align: center"><code>#CDD9DC</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.ENHANCED</td><td style="text-align: center"><code>#CDD9DC</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.JOKER</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.TAROT</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.PLANET</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.SPECTRAL</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SET.VOUCHER</td><td style="text-align: center"><code>#424E54</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.DEFAULT</td><td style="text-align: center"><code>#9BB6BDFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#9BB6BD;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.ENHANCED</td><td style="text-align: center"><code>#8389DDFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#8389DD;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.JOKER</td><td style="text-align: center"><code>#708B91</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#708B91;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.TAROT</td><td style="text-align: center"><code>#A782D1</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#A782D1;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.PLANET</td><td style="text-align: center"><code>#13AFCE</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#13AFCE;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.SPECTRAL</td><td style="text-align: center"><code>#4584FA</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4584FA;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.VOUCHER</td><td style="text-align: center"><code>#FD682B</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FD682B;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">SECONDARY_SET.EDITION</td><td style="text-align: center"><code>#4CA893</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4CA893;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">RARITY.1</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">RARITY.2</td><td style="text-align: center"><code>#4BC292</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">RARITY.3</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">RARITY.4</td><td style="text-align: center"><code>#B26CBB</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B26CBB;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLIND.SMALL</td><td style="text-align: center"><code>#50846E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLIND.BIG</td><td style="text-align: center"><code>#50846E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLIND.BOSS</td><td style="text-align: center"><code>#B44430</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#B44430;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BLIND.WON</td><td style="text-align: center"><code>#4F6367</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.0</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.1</td><td style="text-align: center"><code>#EFEFEF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#EFEFEF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.2</td><td style="text-align: center"><code>#95ACFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#95ACFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.3</td><td style="text-align: center"><code>#65EFAF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#65EFAF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.4</td><td style="text-align: center"><code>#FAE37E</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FAE37E;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.5</td><td style="text-align: center"><code>#FFC052</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFC052;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.6</td><td style="text-align: center"><code>#F87D75</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#F87D75;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">HAND_LEVELS.7</td><td style="text-align: center"><code>#CAA0EF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#CAA0EF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BACKGROUND.L</td><td style="text-align: center"><code>#FFFF00FF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FFFF00;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BACKGROUND.D</td><td style="text-align: center"><code>#00FFFFFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#00FFFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">BACKGROUND.C</td><td style="text-align: center"><code>#374244</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI_CHIPS</td><td style="text-align: center"><code>#009DFF</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td></tr>
-<tr><td style="text-align: left">UI_MULT</td><td style="text-align: center"><code>#FE5F55</code></td><td style="text-align: center"><code>-</code></td><td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th style="text-align: left">Color Name</th>
+<th style="text-align: center">Color (hex)</th>
+<th style="text-align: center">Color (tuple)</th>
+<th style="text-align: center">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left"> MULT </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> CHIPS </td>
+<td style="text-align: center"> <code class="hljs"> #009DFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0.62,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> MONEY </td>
+<td style="text-align: center"> <code class="hljs"> #F3B958 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.95,0.73,0.35,1) </code></td>
+<td style="text-align: center"><span style="background-color:#F3B958;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> XMULT </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> FILTER </td>
+<td style="text-align: center"> <code class="hljs"> #FF9A00 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.6,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLUE </td>
+<td style="text-align: center"> <code class="hljs"> #009DFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0.62,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RED </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> GREEN </td>
+<td style="text-align: center"> <code class="hljs"> #4BC292 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.29,0.76,0.57,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> PALE_GREEN </td>
+<td style="text-align: center"> <code class="hljs"> #56A887 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.34,0.66,0.53,1) </code></td>
+<td style="text-align: center"><span style="background-color:#56A887;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> ORANGE </td>
+<td style="text-align: center"> <code class="hljs"> #FDA200 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.99,0.64,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FDA200;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> IMPORTANT </td>
+<td style="text-align: center"> <code class="hljs"> #FF9A00 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.6,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FF9A00;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> GOLD </td>
+<td style="text-align: center"> <code class="hljs"> #EAC058 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.92,0.75,0.35,1) </code></td>
+<td style="text-align: center"><span style="background-color:#EAC058;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> YELLOW </td>
+<td style="text-align: center"> <code class="hljs"> #FFFF00FF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFF00FF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> CLEAR </td>
+<td style="text-align: center"> <code class="hljs"> #00000000 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0,0,0) </code></td>
+<td style="text-align: center"><span style="background-color:#00000000;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> WHITE </td>
+<td style="text-align: center"> <code class="hljs"> #FFFFFFFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFFFFFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> PURPLE </td>
+<td style="text-align: center"> <code class="hljs"> #8867A5 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.53,0.4,0.65,1) </code></td>
+<td style="text-align: center"><span style="background-color:#8867A5;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLACK </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> L_BLACK </td>
+<td style="text-align: center"> <code class="hljs"> #4F6367 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.39,0.4,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> GREY </td>
+<td style="text-align: center"> <code class="hljs"> #5F7377 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.37,0.45,0.47,1) </code></td>
+<td style="text-align: center"><span style="background-color:#5F7377;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> CHANCE </td>
+<td style="text-align: center"> <code class="hljs"> #4BC292 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.29,0.76,0.57,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> JOKER_GREY </td>
+<td style="text-align: center"> <code class="hljs"> #BFC7D5 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.75,0.78,0.84,1) </code></td>
+<td style="text-align: center"><span style="background-color:#BFC7D5;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> VOUCHER </td>
+<td style="text-align: center"> <code class="hljs"> #CB724C </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.8,0.45,0.3,1) </code></td>
+<td style="text-align: center"><span style="background-color:#CB724C;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BOOSTER </td>
+<td style="text-align: center"> <code class="hljs"> #646EB7 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.39,0.43,0.72,1) </code></td>
+<td style="text-align: center"><span style="background-color:#646EB7;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> EDITION </td>
+<td style="text-align: center"> <code class="hljs"> #FFFFFFFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFFFFFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DARK_EDITION </td>
+<td style="text-align: center"> <code class="hljs"> #000000FF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#000000FF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> ETERNAL </td>
+<td style="text-align: center"> <code class="hljs"> #C75985 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.78,0.35,0.52,1) </code></td>
+<td style="text-align: center"><span style="background-color:#C75985;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> PERISHABLE </td>
+<td style="text-align: center"> <code class="hljs"> #4F5DA1 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.36,0.63,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4F5DA1;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RENTAL </td>
+<td style="text-align: center"> <code class="hljs"> #B18F43 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.69,0.56,0.26,1) </code></td>
+<td style="text-align: center"><span style="background-color:#B18F43;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DYN_UI.MAIN </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DYN_UI.DARK </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DYN_UI.BOSS_MAIN </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DYN_UI.BOSS_DARK </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> DYN_UI.BOSS_PALE </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_1.Hearts </td>
+<td style="text-align: center"> <code class="hljs"> #F03464 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.94,0.2,0.39,1) </code></td>
+<td style="text-align: center"><span style="background-color:#F03464;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_1.Diamonds </td>
+<td style="text-align: center"> <code class="hljs"> #F06B3F </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.94,0.42,0.25,1) </code></td>
+<td style="text-align: center"><span style="background-color:#F06B3F;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_1.Spades </td>
+<td style="text-align: center"> <code class="hljs"> #403995 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.25,0.22,0.58,1) </code></td>
+<td style="text-align: center"><span style="background-color:#403995;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_1.Clubs </td>
+<td style="text-align: center"> <code class="hljs"> #235955 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.14,0.35,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#235955;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_2.Hearts </td>
+<td style="text-align: center"> <code class="hljs"> #F83B2F </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.97,0.23,0.18,1) </code></td>
+<td style="text-align: center"><span style="background-color:#F83B2F;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_2.Diamonds </td>
+<td style="text-align: center"> <code class="hljs"> #E29000 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.89,0.56,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#E29000;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_2.Spades </td>
+<td style="text-align: center"> <code class="hljs"> #4F31B9 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.19,0.73,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4F31B9;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SO_2.Clubs </td>
+<td style="text-align: center"> <code class="hljs"> #008EE6 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0.56,0.9,1) </code></td>
+<td style="text-align: center"><span style="background-color:#008EE6;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SUITS.Hearts </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SUITS.Diamonds </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SUITS.Spades </td>
+<td style="text-align: center"> <code class="hljs"> #374649 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.27,0.29,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374649;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SUITS.Clubs </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.TEXT_LIGHT </td>
+<td style="text-align: center"> <code class="hljs"> #FFFFFFFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFFFFFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.TEXT_DARK </td>
+<td style="text-align: center"> <code class="hljs"> #4F6367 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.39,0.4,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.TEXT_INACTIVE </td>
+<td style="text-align: center"> <code class="hljs"> #88888899 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.53,0.53,0.53,0.6) </code></td>
+<td style="text-align: center"><span style="background-color:#88888899;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.BACKGROUND_LIGHT </td>
+<td style="text-align: center"> <code class="hljs"> #B8D8D8 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.72,0.85,0.85,1) </code></td>
+<td style="text-align: center"><span style="background-color:#B8D8D8;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.BACKGROUND_WHITE </td>
+<td style="text-align: center"> <code class="hljs"> #FFFFFFFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFFFFFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.BACKGROUND_DARK </td>
+<td style="text-align: center"> <code class="hljs"> #7A9E9F </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.48,0.62,0.62,1) </code></td>
+<td style="text-align: center"><span style="background-color:#7A9E9F;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.BACKGROUND_INACTIVE </td>
+<td style="text-align: center"> <code class="hljs"> #666666FF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.4,0.4,0.4,1) </code></td>
+<td style="text-align: center"><span style="background-color:#666666FF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.OUTLINE_LIGHT </td>
+<td style="text-align: center"> <code class="hljs"> #D8D8D8 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.85,0.85,0.85,1) </code></td>
+<td style="text-align: center"><span style="background-color:#D8D8D8;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.OUTLINE_LIGHT_TRANS </td>
+<td style="text-align: center"> <code class="hljs"> #D8D8D866 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.85,0.85,0.85,0.4) </code></td>
+<td style="text-align: center"><span style="background-color:#D8D8D866;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.OUTLINE_DARK </td>
+<td style="text-align: center"> <code class="hljs"> #7A9E9F </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.48,0.62,0.62,1) </code></td>
+<td style="text-align: center"><span style="background-color:#7A9E9F;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.TRANSPARENT_LIGHT </td>
+<td style="text-align: center"> <code class="hljs"> #EEEEEE22 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.93,0.93,0.93,0.13) </code></td>
+<td style="text-align: center"><span style="background-color:#EEEEEE22;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.TRANSPARENT_DARK </td>
+<td style="text-align: center"> <code class="hljs"> #22222222 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.13,0.13,0.13,0.13) </code></td>
+<td style="text-align: center"><span style="background-color:#22222222;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> UI.HOVER </td>
+<td style="text-align: center"> <code class="hljs"> #00000055 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0,0,0.33) </code></td>
+<td style="text-align: center"><span style="background-color:#00000055;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Default </td>
+<td style="text-align: center"> <code class="hljs"> #CDD9DC </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.8,0.85,0.86,1) </code></td>
+<td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Enhanced </td>
+<td style="text-align: center"> <code class="hljs"> #CDD9DC </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.8,0.85,0.86,1) </code></td>
+<td style="text-align: center"><span style="background-color:#CDD9DC;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Joker </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Tarot </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Planet </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Spectral </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SET.Voucher </td>
+<td style="text-align: center"> <code class="hljs"> #424E54 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.26,0.31,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#424E54;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Default </td>
+<td style="text-align: center"> <code class="hljs"> #9BB6BDFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.61,0.71,0.74,1) </code></td>
+<td style="text-align: center"><span style="background-color:#9BB6BDFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Enhanced </td>
+<td style="text-align: center"> <code class="hljs"> #8389DDFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.51,0.54,0.87,1) </code></td>
+<td style="text-align: center"><span style="background-color:#8389DDFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Joker </td>
+<td style="text-align: center"> <code class="hljs"> #708B91 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.44,0.55,0.57,1) </code></td>
+<td style="text-align: center"><span style="background-color:#708B91;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Tarot </td>
+<td style="text-align: center"> <code class="hljs"> #A782D1 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.65,0.51,0.82,1) </code></td>
+<td style="text-align: center"><span style="background-color:#A782D1;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Planet </td>
+<td style="text-align: center"> <code class="hljs"> #13AFCE </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.07,0.69,0.81,1) </code></td>
+<td style="text-align: center"><span style="background-color:#13AFCE;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Spectral </td>
+<td style="text-align: center"> <code class="hljs"> #4584FA </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.27,0.52,0.98,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4584FA;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Voucher </td>
+<td style="text-align: center"> <code class="hljs"> #FD682B </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.99,0.41,0.17,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FD682B;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> SECONDARY_SET.Edition </td>
+<td style="text-align: center"> <code class="hljs"> #4CA893 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.3,0.66,0.58,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4CA893;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RARITY.1 </td>
+<td style="text-align: center"> <code class="hljs"> #009DFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0,0.62,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#009DFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RARITY.2 </td>
+<td style="text-align: center"> <code class="hljs"> #4BC292 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.29,0.76,0.57,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4BC292;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RARITY.3 </td>
+<td style="text-align: center"> <code class="hljs"> #FE5F55 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.37,0.33,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FE5F55;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> RARITY.4 </td>
+<td style="text-align: center"> <code class="hljs"> #B26CBB </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.7,0.42,0.73,1) </code></td>
+<td style="text-align: center"><span style="background-color:#B26CBB;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLIND.Small </td>
+<td style="text-align: center"> <code class="hljs"> #50846E </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.52,0.43,1) </code></td>
+<td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLIND.Big </td>
+<td style="text-align: center"> <code class="hljs"> #50846E </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.52,0.43,1) </code></td>
+<td style="text-align: center"><span style="background-color:#50846E;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLIND.Boss </td>
+<td style="text-align: center"> <code class="hljs"> #B44430 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.71,0.27,0.19,1) </code></td>
+<td style="text-align: center"><span style="background-color:#B44430;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BLIND.won </td>
+<td style="text-align: center"> <code class="hljs"> #4F6367 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.31,0.39,0.4,1) </code></td>
+<td style="text-align: center"><span style="background-color:#4F6367;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.1 </td>
+<td style="text-align: center"> <code class="hljs"> #EFEFEF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.94,0.94,0.94,1) </code></td>
+<td style="text-align: center"><span style="background-color:#EFEFEF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.2 </td>
+<td style="text-align: center"> <code class="hljs"> #95ACFF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.58,0.67,1,1) </code></td>
+<td style="text-align: center"><span style="background-color:#95ACFF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.3 </td>
+<td style="text-align: center"> <code class="hljs"> #65EFAF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.4,0.94,0.69,1) </code></td>
+<td style="text-align: center"><span style="background-color:#65EFAF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.4 </td>
+<td style="text-align: center"> <code class="hljs"> #FAE37E </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.98,0.89,0.49,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FAE37E;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.5 </td>
+<td style="text-align: center"> <code class="hljs"> #FFC052 </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,0.75,0.32,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFC052;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.6 </td>
+<td style="text-align: center"> <code class="hljs"> #F87D75 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.97,0.49,0.46,1) </code></td>
+<td style="text-align: center"><span style="background-color:#F87D75;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> HAND_LEVELS.7 </td>
+<td style="text-align: center"> <code class="hljs"> #CAA0EF </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.79,0.63,0.94,1) </code></td>
+<td style="text-align: center"><span style="background-color:#CAA0EF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BACKGROUND.L </td>
+<td style="text-align: center"> <code class="hljs"> #FFFF00FF </code></td>
+<td style="text-align: center"> <code class="hljs"> (1,1,0,1) </code></td>
+<td style="text-align: center"><span style="background-color:#FFFF00FF;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BACKGROUND.D </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+<tr>
+<td style="text-align: left"> BACKGROUND.C </td>
+<td style="text-align: center"> <code class="hljs"> #374244 </code></td>
+<td style="text-align: center"> <code class="hljs"> (0.22,0.26,0.27,1) </code></td>
+<td style="text-align: center"><span style="background-color:#374244;width:100%;height:2rem;display:block;"></span></td>
+</tr>
+</tbody>
+</table>
 </div>
                     </main>
 

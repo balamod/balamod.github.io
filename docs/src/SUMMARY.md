@@ -12,6 +12,7 @@
 # Developer Guide
 
 - [Modding Basics](./modding-basics.md)
+- [Events](./events.md)
 - [UI Modding Basics](./ui-modding-basics.md)
     - [UI Modding Example](./ui-modding-example.md)
 - [Contributing Guide](./contributing.md)

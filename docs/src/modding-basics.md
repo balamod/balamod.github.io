@@ -3,6 +3,14 @@
 Balamod mods follow a very specific format,
 composed of at least 2 files
 
+```
+...
+└─mods/            
+  └─your_mod_id/   
+    ├─main.lua     
+    └─manifest.json
+```
+
 ## `main.lua`
 
 This is the entrypoint of your lua code. `main.lua` should always return. It is where you can add functions, require

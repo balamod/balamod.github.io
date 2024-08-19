@@ -38,3 +38,16 @@ Each file should contain a single image, whether it's a joker, a tarot card, or 
 - sticker: Sticker
 
 For now, only assets of type `Blind` are animated, with 21 frames of animation.
+
+Example:
+```
+...
+└─mods/            
+  └─your_mod_id/   
+    ├─assets/
+    │ └─textures/
+    │   └─1x/
+    │     └─j_cool_joker.png
+    ├─main.lua     
+    └─manifest.json
+```

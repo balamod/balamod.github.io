@@ -15,7 +15,6 @@
 - [UI Modding Basics](./ui-modding-basics.md)
     - [UI Modding Example](./ui-modding-example.md)
 - [Contributing Guide](./contributing.md)
-- [Mod Format](./mod-format.md)
 - [APIs](./apis/apis.md)
   - [`logging`](./apis/logging.md)
   - [`platform`](./apis/platform.md)

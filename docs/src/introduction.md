@@ -15,7 +15,7 @@ This guide is a testament to what Balamod can do. It's not just a tool, it's a g
 
 ## Related Links
 
-- [Balamod Repository](https://github.com/UwUDev/balamod)
+- [Balamod Repository](https://github.com/balamod/balamod)
 - [Balamod Organization](https://github.com/balamod)
 - [Balamod Documentation](https://balamod.github.io)
 - [Discord Community](https://discord.gg/p7DeW7pSzA)

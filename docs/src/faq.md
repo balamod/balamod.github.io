@@ -12,7 +12,7 @@ If you have any questions that are not answered here, feel free to ask in the [D
 
 Balamod is a mod-loader and framework for the game Balatro. It allows users and modders to modify the game's code, mechanics and assets.
 
-More information can be found on the [Balamod GitHub repository](https://github.com/UwUDev/balamod) and [Documentation](https://balamod.github.io/).
+More information can be found on the [Balamod GitHub repository](https://github.com/balamod/balamod) and [Documentation](https://balamod.github.io/).
 
 ## How do I install balamod?
 
@@ -30,7 +30,7 @@ Please refer to the [Mod Loading](mod-loading.md#mod-loading) guide for detailed
 
 In short, you need to create a new lua file in the mods folder, and insert your mod in the mods table.
 
-For more detailed information, please refer to the [Modding Basics](modding-basics.md#creating-a-mod) guide.
+For more detailed information, please refer to the [Modding Basics](modding-basics.md) guide.
 
 ## Help, on MacOS, Balatro crashes after installing balamod, and talks about "SSL"!
 

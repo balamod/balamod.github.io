@@ -12,7 +12,7 @@
 
 Returns true if `t` contains `element`, based on the `==` operator
 
-<!-- lua: https://raw.githubusercontent.com/UwUDev/balamod/master/src/dependencies/utils.lua#contains -->
+<!-- lua: https://github.com/balamod/balamod_lua/blob/main/src/utils.lua#L7 -->
 
 ### `filter(t: table, predicate: function(e: any) -> boolean) -> table`
 

@@ -4,6 +4,15 @@
 
 ## CLASSES
 
+### `Version`
+
+#### ATTRIBUTES
+
+- major: number
+- minor: number
+- patch: number
+
+
 ## VARIABLES
 
 ## FUNCTIONS
@@ -34,12 +43,8 @@ Parses a semantic version string into its components
 
 Returns true if v2 is after v1, false otherwise. Used to check for updates most notably.
 
-## CLASSES
+### `mergeTables(table1: table, table2: table, logger: Logger) -> table`
 
-### `Version`
+Merges two key-value tables recursively, overwriting the values of the first table with the values of the second table
 
-#### ATTRIBUTES
-
-- major: number
-- minor: number
-- patch: number
+<!-- lua: https://github.com/balamod/balamod_lua/blob/main/src/utils.lua#L205 -->

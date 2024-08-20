@@ -5,9 +5,9 @@ composed of at least 2 files
 
 ```
 ...
-└─mods/            
-  └─your_mod_id/   
-    ├─main.lua     
+└─mods/
+  └─your_mod_id/
+    ├─main.lua
     └─manifest.json
 ```
 
@@ -49,3 +49,46 @@ This JSON document specifies the metadata about your mod, here are the fields
 
 Your mod manifest is also describing your mod for submissions to the mod catalog. Mods with invalid manifests will not
 load into the game.
+
+## Localization and i18n
+
+Localization discovery is done automatically. Balamod will load all json files within the `localization`
+folder of your mod for new strings to translate. The format of a localization string is identical to what
+the game internally uses, besides being in `JSON` rather than `LUA` to ease on interoperability (allowing
+you to make scripts to generate localizations with an API like `DeepL` for instance)
+
+Here is a mod folder structure that supports the english language:
+
+```
+...
+└─mods/
+  └─your_mod_id/
+    ├─localization/
+    │ └─en-us.json
+    ├─main.lua
+    └─manifest.json
+```
+
+The following localization file names are available:
+
+- `de.json` : Deutch -- German
+- `en-us.json`: English -- English US
+- `es_419.json`: Español (México) -- Spanish (Mexican)
+- `es_ES.json`: Español (España) -- Spanish (Spain)
+- `fr.json`: Français -- French
+- `id.json`: Bahasa Indonesia -- Indonesian
+- `it.json`: Italiano -- Italian
+- `ja.json`: 日本語 -- Japanese
+- `ko.json`: 한국어 -- Korean
+- `nl.json`: Nederlands -- Dutch
+- `pl.json`: Polski -- Polish
+- `pt_BR.json`: Português -- Portugese (Brazil)
+- `ru.json`: Русский -- Russian
+- `zh_CN.json`: 简体中文 -- Chinese (Simplified)
+- `zh_TW.json`: 繁體中文 -- Chinese (Traditional)
+
+Localizations are merged in the load order of mods. If you need to overwrite the localization of a mod,
+or if you want to change the game's localization, make sure your mod loads **after** the mod you want
+to overwrite. Use the `load_after` manifest key to that effect.
+
+See [`utils.mergeTables()`](./apis/utils.md) for more informations.

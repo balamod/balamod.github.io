@@ -11,6 +11,10 @@ composed of at least 2 files
     └─manifest.json
 ```
 
+~~~admonish note
+For a complete example see [example-mod](https://github.com/balamod/example-mod) which shows events, api, injection and a github action for release
+~~~
+
 ## `main.lua`
 
 This is the entrypoint of your lua code. `main.lua` should always return. It is where you can add functions, require

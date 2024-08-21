@@ -9,6 +9,7 @@ on:
       - dev-mdbook
   repository_dispatch:
     types: [deploy-doc]
+  workflow_dispatch:
 
 permissions:
   contents: write

@@ -1216,12 +1216,30 @@ to make more complex UI elements.</p>
 <li>Push the changes to your fork.</li>
 <li>Create a pull request.</li>
 </ol>
-<h2 id="add-mods-to-the-in-game-mod-gallary"><a class="header" href="#add-mods-to-the-in-game-mod-gallary">Add mods to the in-game mod gallary</a></h2>
+<h2 id="add-mods-to-the-in-game-mod-gallery"><a class="header" href="#add-mods-to-the-in-game-mod-gallery">Add mods to the in-game mod gallery</a></h2>
 <p>There’s now a rest or “marketplace” system integrated directly into balamod via the mod menu. You can add your mods via the <a href="https://github.com/balamod/mods/blob/main/index.json" title="" target="_blank">indexes</a>
 For the moment there’s only one because I’m going to try and regulate malicious mods and the like, but there’s bound to be many more in the future.
-If you want to add your mod to an index, make a pull request to the index and add your mod to the bottom of the <code>mods.index</code> file.</p>
+If you want to add your mod to an index, make a pull request to the index and add your mod to the bottom of the <code>index.json</code> file.</p>
+<p>There are a few rules to follow when adding your mod to the index:</p>
+<ul>
+<li>The id of the mod must be unique and can only contain lowercase letters, underscores and hyphens.</li>
+<li>The version must be a valid semantic version matching the format <code>x.y.z</code>.</li>
+</ul>
 <p>The format is as follows:</p>
-<pre><code>mod_id|version|name|description|url
+<pre><code class="language-json">  {
+  "url": "https://github.com/you/my_cool_mod",
+  "id": "my_cool_mod",
+  "name": "My cool mod",
+  "description": [
+    "A really cool mod"
+  ],
+  "version": "1.0.0",
+  "load_before": [],
+  "load_after": [],
+  "authors": [
+    "You"
+  ]
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="apis"><a class="header" href="#apis">APIs</a></h1>
 <p>This topic provides a reference for the APIs that you can use to modify the game.</p>

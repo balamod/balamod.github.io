@@ -7,6 +7,7 @@
 - [Installation](./installation.md)
 - [Getting Started](./getting-started.md)
 - [Mod Loading](./mod-loading.md)
+- [Developer Console](./dev-console.md)
 - [FAQ](./faq.md)
 
 # Developer Guide

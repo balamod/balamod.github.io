@@ -1,8 +1,8 @@
 # Mod Loading
 
-Balamod can load mods and apis automatically or manually. When balamod mod-loader is installed(by running `balamod -a`), it will create a `mods` folder and `apis` folder on the AppData directory. 
+Balamod can load mods and apis automatically or manually. When balamod mod-loader is installed, it creates a `mods` folder in the Balatro save directory. It also installs itself there, by putting all of its libraries in the folder as well as by overloading the game's entrypoint to inject itself.
 
-The folder is vary depending on the platform.
+The folder depends on the platform.
 
 - Windows: `C:\Users\<username>\AppData\Roaming\Balatro` aka `%APPDATA%\Balatro`
 - macOS: `~/Library/Application Support/Balatro`
@@ -10,9 +10,8 @@ The folder is vary depending on the platform.
 
 ## Automatic Mod Loading
 
-If user downloads a mod from the in-game mod gallary, the mod will be automatically loaded by balamod. The mod will be placed in the `mods` folder.
+If a user downloads a mod from the in-game mod gallary, the mod will be automatically loaded by balamod. The mod will be placed in the `mods` folder.
 
 ## Manual Mod Loading
 
-If user downloads a mod from the internet, the mod file should be placed in the `mods` folder. The mod will be loaded by balamod when the game is started.
-
+If a user downloads a mod from the internet, the mod file should be placed in the `mods` folder. The mod will be loaded by balamod when the game is started.

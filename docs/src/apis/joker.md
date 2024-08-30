@@ -42,6 +42,7 @@ Takes args:
 ~~~admonish warning
 The following are experimental and may be buggy.
 ~~~
+
 - unlocked, boolean: Whether the joker starts locked or unlocked in a new profile. 
 - discovered, boolean: Whether the joker starts discovered or undiscovered in a new profile.
 - effect, string: A description of the effect. This feature may do nothing and is safe to ignore.
@@ -49,7 +50,7 @@ The following are experimental and may be buggy.
 - perishable_compat, boolean: Whether the perishable modifier can appear on this joker or not
 - unlock_condition, table: A table that describes how to unlock this joker. Refer below for more information.
 - enhancement_gate, string: The ID of the card modifier this joker needs to appear. 
-- tooltip, table: Tooltips that get displayed alongside the description. **Refer below for formatting**
+- tooltip, table: Tooltips that get displayed alongside the description. Refer below for formatting
 
 
 
@@ -88,13 +89,14 @@ joker.add{
 ### Effect functions
 
 These functions are called during various events in the game. The most commonly called one is `calculate_joker_effect`, under a large breadth of `context`'s. The following is a list of contexts that call `calculate_joker_effect`. Contrary to the name, `calculate_joker_effect` is not only called on jokers, but also consumables in `context.joker_main`. When writing your own `calculate_joker_effect`, check for your joker's id, and the context you want it to activate. Example above.
-| Key | Description | Info | Vanilla Example
+
+| Key | Description | Info | Vanilla Example |
 |-|-|-|-|
-|`individual`| When calculating an individual playing card, either in hand, or played. | `context.cardarea` == `G.hand` if calculating cards in hand, `G.play` if calculating played cards<br> `context.full_hand` == Table of cards in played hand <br> `context.scoring_hand` == Table of scored cards in played hand <br> `context.scoring_name` == Name of hand type played <br> `context.poker_hands` == All hand types included in played hand <br> `context.other_card` == A playing card. Iterates through the cards in the `cardarea` | too many to list, check `card.lua` in base game source code
-|`repetition`| When calculating repetitions. Required to return a table with at least repetitions: `{repetitions:int}` | too many to list, check `state_events.lua` in base game source code. | Sock and Buskin, Hanging Chad, Dusk, Seltzer, Hack, Mime
-|`joker_main`| During the joker scoring phase. Also includes consumables. | `context.cardarea` == `G.jokers`<br> `context.full_hand` == Table of cards in played hand <br> `context.scoring_hand` == Table of scored cards in played hand <br> `context.scoring_name` == Name of hand type played <br> `context.poker_hands` == All hand types included in played hand | Observatory
-|`discard`| When discarding cards. Called once per discarded card | `context.other_card` == A discarded card. Iterates through discarded cards<br>`context.full_hand` == A table of all discarded cards. | Ramen, Trading Card, Castle, Mail-In Rebate, Hit The Road, Green Joker, Yorick, Faceless Joker
-| `blueprint` | Whether the current calculate_joker is being called by a Blueprint or Brainstorm. Add `not context.blueprint` if your card is incompatible with Blueprint or Brainstorm. | |
+|`individual`| When calculating an individual playing card, either in hand, or played. | `context.cardarea` == `G.hand` if calculating cards in hand, `G.play` if calculating played cards \|  `context.full_hand` == Table of cards in played hand  \|  `context.scoring_hand` == Table of scored cards in played hand  \|  `context.scoring_name` == Name of hand type played  \|  `context.poker_hands` == All hand types included in played hand  \|  `context.other_card` == A playing card. Iterates through the cards in the `cardarea` | too many to list, check `card.lua` in base game source code
+|`repetition`| When calculating repetitions. Required to return a table with at least repetitions: `{repetitions:int}` | This is essentially a "sub-context" of other contexts. | Sock and Buskin, Hanging Chad, Dusk, Seltzer, Hack, Mime
+|`joker_main`| During the joker scoring phase. Also includes consumables. | `context.cardarea` == `G.jokers` \|  `context.full_hand` == Table of cards in played hand  \|  `context.scoring_hand` == Table of scored cards in played hand  \|  `context.scoring_name` == Name of hand type played  \|  `context.poker_hands` == All hand types included in played hand | Observatory
+|`discard`| When discarding cards. Called once per discarded card | `context.other_card` == A discarded card. Iterates through discarded cards \| `context.full_hand` == A table of all discarded cards. | Ramen, Trading Card, Castle, Mail-In Rebate, Hit The Road, Green Joker, Yorick, Faceless Joker
+| `blueprint` | Whether the current calculate_joker is being called by a Blueprint or Brainstorm. Add `not context.blueprint` if your card is incompatible with Blueprint or Brainstorm. | | 
 | `open_booster` | When opening a booster pack. | `context.card` == `card` | Hallucination
 | `buying_card` | When buying a **VOUCHER**. | `context.card` == `card` | Unused in vanilla Balatro.
 | `selling_self` | When this card is getting sold. | No additional data passed. |Luchador, Diet Cola, Invisible Joker
@@ -105,16 +107,17 @@ These functions are called during various events in the game. The most commonly 
 |`skipping_booster`| When skipping a blind | No additional data passed. | Red Card
 |`playing_card_added`| When a playing card is added to the deck | `context.cards` == Table of playing cards added to the deck | Hologram
 |`first_hand_drawn`| When the first hand is drawn against a Blind. | No additional data passed. | Certificate, DNA, Trading Card, Chicot, Madness, Burglar, Riff-Raff, Cartomancer, Ceremonial Dagger, Marble Joker
-|`destroying_card`| After hand is scored. Called multiple times, once per played card. | `context.destroying_card` == A playing card that was scored <br> `context.full_hand` == Table of cards in played hand | Sixth Sense
-|`remove_playing_cards`|  When a playing card is destroyed by another card | `context.cardarea` == nil if destroyed by a consumable, `G.jokers` if destroyed by a joker. <br> `context.destroyed` == Table of cards destroyed | Caino, Glass Joker
+|`destroying_card`| After hand is scored. Called multiple times, once per played card. | `context.destroying_card` == A playing card that was scored  \|  `context.full_hand` == Table of cards in played hand | Sixth Sense
+|`remove_playing_cards`|  When a playing card is destroyed by another card | `context.cardarea` == nil if destroyed by a consumable, `G.jokers` if destroyed by a joker.  \|  `context.destroyed` == Table of cards destroyed | Caino, Glass Joker
 |`using_consumeable`| When using a consumable | `context.consumeable` == The consumable used | Fortune Teller, Constellation, Glass Joker (When using Hanged Man)
-|`debuffed_hand`| When a hand type that is not allowed is played (e.g Playing a 4 card hand against the Psychic). | `context.cardarea` == `G.jokers`<br>`context.full_hand` == Table of cards in played hand<br>`context.scoring_hand` == Table of scored cards in played hand<br>`context.scoring_name` == Name of hand type played<br> `context.poker_hands` == All hand types included in played hand  | Matador
-|`pre_discard`| Before a hand is discarded | `context.full_hand` == Table of cards in discarded hand<br>`context.hook` == If the discard was forced by The Hook blind | Burnt Joker
-|`end_of_round`| After exiting a blind, by either defeating it, or by game over. When defeating a blind, its called multiple times, once per card in hand. If you want your joker to proc once, after defeating a blind, use `(not context.individual and not context.repetition)` | `context.cardarea` == `G.hand`<br>`context.other_card` == A card in hand. Iterates through the hand per call.<br>`context.individual` == When not calculating repetitions.<br>`context.repetition` == When calculating repetitions of playing cards with end of round effects<br>`context.repetition_only` == Only when checking for red seal<br>`context.card_effects` == When calculating repetitions, the effect that has procced. (i think?) | Campfire, Rocket, Turtle Bean, Invisible Joker, Popcorn, Egg, Gift Card, To Do List, Mr Bones
+|`debuffed_hand`| When a hand type that is not allowed is played (e.g Playing a 4 card hand against the Psychic). | `context.cardarea` == `G.jokers` \| `context.full_hand` == Table of cards in played hand \| `context.scoring_hand` == Table of scored cards in played hand \| `context.scoring_name` == Name of hand type played \| `context.poker_hands` == All hand types included in played hand  | Matador 
+|`pre_discard`| Before a hand is discarded | `context.full_hand` == Table of cards in discarded hand \| `context.hook` == If the discard was forced by The Hook blind | Burnt Joker
+|`end_of_round`| After exiting a blind, by either defeating it, or by game over. When defeating a blind, its called multiple times, once per card in hand. If you want your joker to proc once, after defeating a blind, use `(not context.individual and not context.repetition)` | `context.cardarea` == `G.hand` \| `context.other_card` == A card in hand. Iterates through the hand per call. \| `context.individual` == When not calculating repetitions. \| `context.repetition` == When calculating repetitions of playing cards with end of round effects \| `context.repetition_only` == Only when checking for red seal \| `context.card_effects` == When calculating repetitions, the effect that has procced. (i think?) | Campfire, Rocket, Turtle Bean, Invisible Joker, Popcorn, Egg, Gift Card, To Do List, Mr Bones
 |`game_over`| If a game over would happen | `context.end_of_round` == true | Mr Bones
 |`cards_destroyed`| ***Never called***. Likely an artifact of `remove_playing_cards`. | - | Caino, Glass Joker
 
 In scoring contexts and some others, you may return a table with the following keys for various effects:
+
 | Key | Effect |
 |-|-|
 | `message`: string | A little quip with `message` will pop up near `card`. If `card` is not defined, or not required, it will pop up near whatever card is returning this |
@@ -164,6 +167,7 @@ end
 ### Config
 
 `args.config` is partially saved into `card.ability`. Strongly suggest not using anything but `extra` for more control over your card, but its up to you. The following are keys that get saved and their effects.
+
 | Key | Effect |
 |-|-|
 | `mult`: int | Additive Mult bonus |
@@ -197,7 +201,12 @@ end
 ~~~admonish warn
 This feature is experimental. You will encounter various bugs while using this.
 ~~~
-You can add custom rarities by having the following code in your `on_enable` function, before you add your cards with this rarity. ***Cards of these rarities WILL NOT naturally show up in the game***. Replace `{customrarity}` with a name or number of your choice. Replace `{hexcode}` with a hexcode of a colour of your choice.
+You can add custom rarities by having the following code in your `on_enable` function, before you add your cards with this rarity. 
+
+***Cards of these rarities WILL NOT naturally show up in the game***. 
+
+Replace `{customrarity}` with a name or number of your choice. Replace `{hexcode}` with a hexcode of a colour of your choice.
+
 ```lua
   -- where your cards of this rarity will be saved
   G.P_JOKER_RARITY_POOLS["{customrarity}"] = {} 
